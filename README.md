@@ -47,10 +47,6 @@ Your original user apps remain untouched - the module just makes the system prio
 5. Reboot
 6. Grant permissions in microG Settings
 
-## Why So Small? (3.8 KB)
-
-Unlike older modules that bundled 45+ MB of APK files, this module is tiny because it just **converts** your already-installed apps.
-
 ## Updating microG
 
 **Within the same version series (0.3.9.x):** Just install the new APK normally - no need to reflash.
