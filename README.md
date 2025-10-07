@@ -57,7 +57,8 @@ Download from:
 
 ## For Real Play Store Users
 
-Install Play Store APK (from APKMirror, non-bundle only) as user app before flashing the module. The module will detect and convert it automatically.
+Install Play Store APK (from APKMirror, non-bundle only) as user app before flashing the module. The module should detect and convert it automatically.
+(Contact me if this isn't the case)
 
 ## Common Issues
 
