@@ -2,13 +2,13 @@
 
 A Magisk/KernelSU module that **converts** microG GmsCore from a user app to a privileged system app.
 
-**Forked from nift4's microG Installer Revived** - Updated to support modern microG versions (0.3.5+).
+**Forked from nift4's microG Installer Revived** - Updated to support microG 0.3.9.250932.
 
 > **Note:** This module doesn't bundle or install microG for you - it moves your already-installed microG to system with proper privileges. Think of it as a "converter" rather than an "installer".
 
 ## Personal Project Notice
 
-This is primarily maintained for my personal use. I'll update it when I can, but support may be limited. Feel free to use it, fork it, or submit PRs.
+This is maintained for my personal use and currently works with **microG 0.3.9.250932**. 
 
 ## What This Module Actually Does
 
@@ -19,18 +19,11 @@ This is primarily maintained for my personal use. I'll update it when I can, but
 
 Your original user apps remain untouched - the module just makes the system prioritize the privileged copies.
 
-## What's Different in This Fork
+## Current Version Support
 
-- **Supports microG 0.3.5 through 0.3.9+** (including the new versioning scheme like 0.3.9.250932)
-- Version checks updated to allow modern microG versions
-- Tested with latest microG releases
-
-## Supported Versions
-
-- **microG GmsCore:** 0.3.5 - 0.3.9+ (version code 250932018)
-- **microG Companion:** Matching versions
-- **GsfProxy:** 0.1.0 (bundled)
-- **MapsV1:** 0.1.0 (bundled)
+- **microG GmsCore:** 0.3.9.250932 (version code 250932018) - **Currently tested and working**
+- **microG Companion:** 0.3.9.40226 (version code 84022618)
+- **Older versions:** 0.3.5+ may work but are not actively tested
 
 ## Requirements
 
@@ -41,14 +34,14 @@ Your original user apps remain untouched - the module just makes the system prio
    - If not supported, try [FakeGApps](https://github.com/whew-inc/FakeGApps/releases)
 
 2. **Install microG FIRST** - This is critical! Install as regular user app before flashing module
-   - Download from [microG GitHub](https://github.com/microg/GmsCore/releases)
+   - Download microG 0.3.9.250932 from [microG GitHub](https://github.com/microg/GmsCore/releases/tag/v0.3.9.250932)
    - Install the standard variant (not `-hw` or `-lh`)
    - Install both GmsCore AND Companion/Play Store
 
 ## Installation
 
 1. Verify signature spoofing is enabled
-2. **Install microG GmsCore as user app** ← Do this first!
+2. **Install microG GmsCore 0.3.9.250932 as user app** ← Do this first!
 3. **Install Companion (or Play Store) as user app** ← Do this too!
 4. Flash this module in Magisk/KernelSU
 5. Reboot
@@ -56,22 +49,15 @@ Your original user apps remain untouched - the module just makes the system prio
 
 ## Why So Small? (3.8 KB)
 
-Unlike older modules that bundled 45+ MB of APK files, this module is tiny because it just **converts** your already-installed apps. This means:
-
-✅ Always use the latest microG version  
-✅ Update microG anytime without reflashing  
-✅ Smaller download size  
-✅ More flexible  
+Unlike older modules that bundled 45+ MB of APK files, this module is tiny because it just **converts** your already-installed apps.
 
 ## Updating microG
 
-Just install the new APK normally - **no need to reflash the module**.
+**Within the same version series (0.3.9.x):** Just install the new APK normally - no need to reflash.
 
 Download from:
 - [microG GitHub Releases](https://github.com/microg/GmsCore/releases)
 - [microG F-Droid Repository](https://microg.org/download.html)
-
-The module will automatically use whatever version you have installed!
 
 ## For Real Play Store Users
 
@@ -80,20 +66,12 @@ Install Play Store APK (from APKMirror, non-bundle only) as user app before flas
 ## Common Issues
 
 - **"You do not have official microG installed"** - Install microG as user app first!
+- **"Maximum supported version" error** - You're using a newer microG than this module supports. Wait for update or use 0.3.9.250932.
 - **Bootloop:** Use [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html) to disable module
 - **Black screen:** Don't use Magisk Delta's SuList
 - **App crashes (browsers):** Disable KSU Unmount modules for that app
 - **Background location permission:** Go to App Info > Permissions > Location > tap warning > retry
 - **Play Store error DF-DFERH-01:** Enable Device Registration in microG settings
-
-## Building
-
-```bash
-wget -O META-INF/com/google/android/update-binary https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh
-zip microG_Installer_Revived_Again.zip -9r * -x update.json
-```
-
-Or on Windows with 7-Zip, add all files except `.git` folder and `update.json`.
 
 ## Credits
 
