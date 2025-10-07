@@ -9,10 +9,10 @@ fi
 if ! $BOOTMODE; then
     abort "- ERROR: Installation via recovery is NOT supported."
 fi
-mmm_exec setSupportLink "https://github.com/nift4/microg_installer_revived/issues"
+mmm_exec setSupportLink "https://github.com/spacealtctrl/microg_installer_revived_again/issues"
 
-MAX_VER="240913008"
-MAX_VERN="0.3.4.240913"
+MAX_VER="250932018"
+MAX_VERN="0.3.9.250932"
 
 if [ -f /data/adb/Phonesky.apk ]; then
     ui_print "- INFO: Phonesky.apk is found in /data/adb, but this module no longer uses this file."
