@@ -1,58 +1,75 @@
-## This project is in reduced maintenance / no support mode and I will only release updates for my personal usage from now on. There are too many issues with KernelSU, stock ROMs and everything too far from my personal usecase, and I'd rather use my free time with other projects, so I am not really able (or motivated) to support most cases anymore. If you can, use recovery-based installers, those will always be more reliable and universal.
+# microG Installer Revived Again
 
-# microG Installer Revived
+A Magisk/KernelSU module that installs microG GmsCore, GsfProxy, and Companion (or Play Store) to `/system/priv-app`.
 
-This is a Magisk module - originally based on Hieu Van's microG Installer - that installs microG GmsCore, GsfProxy and Companion (or Play Store if you want so) to `/system/priv-app`.
+**Forked from nift4's microG Installer Revived** - Updated to support modern microG versions (0.3.5+).
 
-Currently, GmsCore 0.3.4 (including Companion, previously known as FakeStore) and earlier are supported. GsfProxy 0.1.0 and MapsV1 0.1.0 are bundled in the module.
+## Personal Project Notice
 
-**Note**: Install this module before installing any GMS-dependent apps, as well as do not disable it after installing such apps, unless you know what you're doing.
+This is primarily maintained for my personal use. I'll update it when I can, but support may be limited. Feel free to use it, fork it, or submit PRs.
 
-There are two copies of this online: The [Magisk alt module repo](https://github.com/Magisk-Modules-Alt-Repo/microG_Installer) and the [personal](https://github.com/nift4/microg_installer) one. The personal one contains the latest development version and is used for pull requests and issues and the Magisk alt repo one is the stable code only.
+## What's Different in This Fork
+
+- **Supports microG 0.3.5 through 0.3.9+** (including the new versioning scheme like 0.3.9.250932)
+- Version checks updated to allow modern microG versions
+- Tested with latest microG releases
+
+## Supported Versions
+
+- **microG GmsCore:** 0.3.5 - 0.3.9+ (version code 250932018)
+- **microG Companion:** Matching versions
+- **GsfProxy:** 0.1.0 (bundled)
+- **MapsV1:** 0.1.0 (bundled)
+
+## Requirements
+
+⚠️ **DO NOT INSTALL** if you have Google Play Services already installed
+
+1. **Signature spoofing support** - Your ROM must support this
+   - Check with "Signature Spoofing Checker" app
+   - If not supported, try [FakeGApps](https://github.com/whew-inc/FakeGApps/releases)
+
+2. **Install microG first** - Install as regular user app before flashing module
+   - Download from [microG GitHub](https://github.com/microg/GmsCore/releases)
+   - Install the standard variant (not `-hw` or `-lh`)
 
 ## Installation
-**Again, if you have Google services currently installed, DO NOT INSTALL THIS MODULE.**
-- Choose an solution for [Signature spoofing](https://github.com/microg/android_packages_apps_GmsCore/wiki/Signature-Spoofing) (Note: If your ROM does not support signature spoofing, I recommened [whew-inc's FakeGApps fork](https://github.com/whew-inc/FakeGApps/releases))
-- Install microG 0.3.2 and Companion (or real Play Store) as normal user app
-- Install the module to convert them to system apps with all bells and whistles (like Maps V1, GsfProxy, etc)
 
-## How do I get the real Play Store?
+1. Verify signature spoofing is enabled
+2. Install microG GmsCore as user app
+3. Install Companion (or Play Store) as user app
+4. Flash this module in Magisk/KernelSU
+5. Reboot
+6. Grant permissions in microG Settings
 
-First, if you experience an bootloop, use [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html#q-i-installed-a-module-and-it-bootlooped-my-device-help) to disable the module and use an older Play Store APK, then post a bug report. This module needs to be updated for new Play Store versions every while. If it boots, but Play Store is broken, it's probably a microG issue. Feel free to report issues in the bugtracker here though.
+## Updating microG
 
-Get an Play Store APK (I suggest unpatched Play Store from APKMirror) - please note that the file has to be a non-bundle APK, which means APKM files are not supported. Then, just install it before flashing the module! If you now install, update or reflash microG Installer Revived there will be an message "Installing real Play Store". This indicates it worked. Now grant all permissions. You can now install updates for the Play Store like for every app.
+Just install the new APK normally - **no need to reflash the module**.
 
-Note: previously, this module told you to put it into `/data/adb/Phonesky.apk`. This is no longer needed and the module will ignore that file.
+Download from:
+- [microG GitHub Releases](https://github.com/microg/GmsCore/releases)
+- [microG F-Droid Repository](https://microg.org/download.html)
 
-## Can I update to new versions without waiting for module updates?
+## For Real Play Store Users
 
-**Yes**, just download the new APK (in the normal variant, not -hw or -lh) from microG GitHub, download page or microG F-Droid repo (all those use the exact same APK files!) and install it as you always would **without reflashing the module**. If you use Companion, update it this way too. Please note that some F-Droid clients report signature compatibility issues, which however appears to be a problem with interactions between the microG repo, clients and signature spoofing. In this case, download the APKs using a web browser and install them normally.
+Install Play Store APK (from APKMirror, non-bundle only) as user app before flashing the module. The module will detect and convert it automatically.
 
-## Common issues
+## Common Issues
 
-- black screen / bootloop: don't use Magisk Delta's SuList
-- app misbehaves/crashes with missing microg overlay (eg. chromium based browsers): disable KSU Unmount modules from its app profile
-- can grant SMS permission but can't grant background location: go to App Info > Permissions > Location > (press "Location access" in the warning dialog), then go back to self test and try to grant background location again - it should now work
-- real Play Store error DF-DFERH-01: make sure you have Device Registration enabled in microG settings, and make sure Internet access is enabled for Play Store and microG (some custom ROMs have a toggle in App info)
+- **Bootloop:** Use [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html) to disable module
+- **Black screen:** Don't use Magisk Delta's SuList
+- **App crashes (browsers):** Disable KSU Unmount modules for that app
+- **Background location permission:** Go to App Info > Permissions > Location > tap warning > retry
+- **Play Store error DF-DFERH-01:** Enable Device Registration in microG settings
 
-## Build
+## Building
+bash
+wget -O META-INF/com/google/android/update-binary https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh
+zip microG_Installer_Revived_Again.zip -9r * -x update.json
 
-### Linux, BSD, macOS, Android
-Requires wget.
+Credits
 
-    wget -O META-INF/com/google/android/update-binary https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh && zip microG_Installer_Revived.zip -9r * -x update.json
-
-
-### Other
-Download [this](https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh) and put it into `META-INF/com/google/android/update-binary`. And ZIP it.
-
-### About microGOverlay.apk
-This APK file is an simple overlay containing configuration for UnifiedNlp. The source can not be checked in into this git repository because of compatibility reasons with module repositories, so I posted the trivial source code on [an extra branch](https://github.com/nift4/microg_installer_revived/tree/overlay). You can use any signing keystore to sign the overlay, but it needs to be signed.
-
-## Credits
-
-- **microG project** for their awesome work
-- **Hieu Van** for the [original microG Installer](https://github.com/nift4/microg_installer_revived/tree/23de13101d8dd5807f713d0cace4a565478c6cfd)
-- **Fs00** for many bug fixes
-- **chris42** and **FriendlyNeighborhoodShane** for privapp permission files
-- **felinira**, **akaessens** and **soracqt** for contributing through pull requests
+microG Project - For microG itself
+nift4 - For microG Installer Revived
+Hieu Van - For the original microG Installer
+Contributors - Fs00, chris42, FriendlyNeighborhoodShane, and others
