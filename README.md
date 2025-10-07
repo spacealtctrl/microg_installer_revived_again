@@ -69,7 +69,7 @@ zip microG_Installer_Revived_Again.zip -9r * -x update.json
 
 Credits
 
-microG Project - For microG itself
-nift4 - For microG Installer Revived
-Hieu Van - For the original microG Installer
-Contributors - Fs00, chris42, FriendlyNeighborhoodShane, and others
+- microG Project - For microG itself
+- nift4 - For microG Installer Revived
+- Hieu Van - For the original microG Installer
+- Contributors - Fs00, chris42, FriendlyNeighborhoodShane, and others
