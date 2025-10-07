@@ -21,8 +21,8 @@ Your original user apps remain untouched - the module just makes the system prio
 
 ## Current Version Support
 
-- **microG GmsCore:** 0.3.9.250932 (version code 250932018) - **Currently tested and working**
-- **microG Companion:** 0.3.9.40226 (version code 84022618)
+- **microG GmsCore:** 0.3.9.250932 - **Currently tested and working**
+- **microG Companion:** 0.3.9.40226
 - **Older versions:** 0.3.5+ may work but are not actively tested
 
 ## Requirements
