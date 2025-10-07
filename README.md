@@ -61,7 +61,6 @@ Install Play Store APK (from APKMirror, non-bundle only) as user app before flas
 
 ## Common Issues
 
-- **"You do not have official microG installed"** - Install microG as user app first!
 - **"Maximum supported version" error** - You're using a newer microG than this module supports. Wait for update or use 0.3.9.250932.
 - **Bootloop:** Use [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html) to disable module
 - **Black screen:** Don't use Magisk Delta's SuList
