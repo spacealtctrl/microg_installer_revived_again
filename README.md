@@ -1,4 +1,4 @@
-# microG Installer Revived Again
+# microG Installer Revived.... Again
 
 A Magisk/KernelSU module that **converts** microG GmsCore from a user app to a privileged system app.
 
