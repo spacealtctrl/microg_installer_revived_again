@@ -1,83 +1,131 @@
-# microG Installer Revived.... again
+# microG Installer Revived… Again
 
-A Magisk/KernelSU module that **converts** microG GmsCore from a user app to a privileged system app.
+A **Magisk / KernelSU module** that converts your installed microG GmsCore from a user app into a **system-level app** to improve **Play Integrity behavior** and testing on custom or rooted devices.  
 
-**Forked from nift4's microG Installer Revived** - Updated to support microG 0.3.9.250932.
+**Forked from nift4’s microG Installer Revived** — updated to support **microG 0.3.9.250932**.
 
-> **Note:** This module doesn't bundle or install microG for you - it moves your already-installed microG to system with proper privileges. Think of it as a "converter" rather than an "installer".
+> **Note:** This module does not bundle or install microG. It promotes your already-installed microG to the system layer with proper privileges. Think of it as a **converter**, not a traditional installer.
 
-## Personal Project Notice
+---
 
-This is maintained for my personal use and currently works with **microG 0.3.9.250932**. 
+## ⚠ Personal Project Notice
 
-## What This Module Actually Does
+This is a personal side project maintained for testing and research. Current support focuses on **microG 0.3.9.250932**.  
 
-1. **Finds** your installed microG user apps
-2. **Copies** them to `/system/priv-app/` (via Magisk overlay)
-3. **Grants** necessary system-level permissions
-4. **Enables** signature spoofing and other privileged features
+If you want to participate in testing or share results, join the Telegram testing group: [https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
 
-Your original user apps remain untouched - the module just makes the system prioritize the privileged copies.
+---
 
-## Current Version Support
+## Overview
 
-- **microG GmsCore:** 0.3.9.250932 - **Currently tested and working**
-- **microG Companion:** 0.3.9.40226
-- **Older versions:** 0.3.5+ may work but are not actively tested
+This module allows your **user-installed microG apps** to operate at the system level by promoting them into `/system/priv-app/` using Magisk/KernelSU overlay mechanisms. By doing so, microG:
+
+- Gains system-level privileges required for testing Play Integrity  
+- Is treated by Android as a system component without modifying `/system` permanently  
+- Allows apps to interact with microG in a closer-to-native environment  
+- Leaves your original user-installed apps untouched; the system prioritizes the overlayed copies  
+
+This approach provides a safe, reversible way to **evaluate Play Integrity responses** and improve compatibility in rooted or custom ROM environments.
+
+---
+
+## Features
+
+- Detects installed microG GmsCore and Companion apps  
+- Converts them into **system-level apps** using overlay mechanisms  
+- Grants necessary **system permissions** and enables features like **signature spoofing**  
+- Reversible: removing the module restores the system to its original state  
+- Tested with latest microG releases while remaining compatible with prior 0.3.5+ versions (untested)
+
+---
+
+## Supported Versions
+
+| Component           | Version Tested |
+|--------------------|----------------|
+| microG GmsCore      | 0.3.9.250932   |
+| microG Companion    | 0.3.9.40226    |
+| Older microG        | 0.3.5+ (untested) |
+
+---
 
 ## Requirements
 
-⚠️ **DO NOT INSTALL** if you have Google Play Services already installed
+**Do NOT install** if Google Play Services are present.  
 
-1. **Signature spoofing support** - Your ROM must support this
-   - Check with "Signature Spoofing Checker" app
-   - If not supported, try [FakeGApps](https://github.com/whew-inc/FakeGApps/releases)
+1. **Signature spoofing support** – check using the [Signature Spoofing Checker](https://play.google.com/store/apps/details?id=com.android.vending.signaturecheck)  
+   - If unsupported, see [FakeGApps](https://github.com/whew-inc/FakeGApps/releases)  
 
-2. **Install microG FIRST** - This is critical! Install as regular user app before flashing module
-   - Download microG 0.3.9.250932 from [microG GitHub](https://github.com/microg/GmsCore/releases/tag/v0.3.9.250932)
-   - Install the standard variant (not `-hw` or `-lh`)
-   - Install both GmsCore AND Companion/Play Store
+2. **Pre-installed microG apps** – both GmsCore and Companion must be installed as **user apps** before flashing the module  
+
+---
 
 ## Installation
 
-1. Verify signature spoofing is enabled
-2. **Install microG GmsCore 0.3.9.250932 as user app** ← Do this first!
-3. **Install Companion (or Play Store) as user app** ← Do this too!
-4. Flash this module in Magisk/KernelSU
-5. Reboot
-6. Grant permissions in microG Settings
+1. Verify signature spoofing is enabled  
+2. Install **microG GmsCore 0.3.9.250932** as a user app  
+3. Install **microG Companion / Play Store variant** as a user app  
+4. Flash this module via Magisk or KernelSU  
+5. Reboot  
+6. Grant necessary permissions in microG Settings  
+
+> The module automatically detects and converts your user-installed apps to system-level versions during boot.
+
+---
 
 ## Updating microG
 
-**Within the same version series (0.3.9.x):** Just install the new APK normally - no need to reflash.
+For updates **within the 0.3.9.x series**, simply install the new APK — no need to reflash the module.  
 
-Download from:
-- [microG GitHub Releases](https://github.com/microg/GmsCore/releases)
+Sources:  
+- [microG GitHub Releases](https://github.com/microg/GmsCore/releases)  
 - [microG F-Droid Repository](https://microg.org/download.html)
 
-## For Real Play Store Users
+---
 
-Install Play Store APK (from APKMirror, non-bundle only) as user app before flashing the module. The module should detect and convert it automatically.
-(Contact me if this isn't the case)
+## Notes for Play Store Users
+
+- Install the Play Store APK (standard APK, not bundle) **before flashing**  
+- Module should detect and convert it automatically  
+- Contact the maintainer if detection fails
+
+---
+
+## Testing & Feedback
+
+This module is intended for **testing and improving Play Integrity results**. Testers are encouraged to report:
+
+- System-level behavior of apps interacting with microG  
+- Boot and overlay behavior on different ROMs and kernels  
+- Any permission, integration, or compatibility anomalies  
+
+**Recommendation:** use secondary devices or emulators and back up important data before testing.
+
+---
 
 ## Common Issues
 
-- **"Maximum supported version" error** - You're using a newer microG than this module supports. Wait for update or use 0.3.9.250932.
-- **Bootloop:** Use [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html) to disable module
-- **Black screen:** Don't use Magisk Delta's SuList
-- **App crashes (browsers):** Disable KSU Unmount modules for that app
-- **Background location permission:** Go to App Info > Permissions > Location > tap warning > retry
-- **Play Store error DF-DFERH-01:** Enable Device Registration in microG settings
+- **Maximum supported version error:** Using a newer microG than supported  
+- **Bootloop:** Enter [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html)  
+- **Black screen:** Avoid Magisk Delta’s SuList  
+- **App crashes:** Disable KSU Unmount modules for affected apps  
+- **Background location warnings:** Retry via App Info → Permissions  
+- **Play Store DF-DFERH-01 error:** Enable Device Registration in microG settings  
+
+---
 
 ## Credits
 
-- **microG Project** - For microG itself
-- **nift4** - For microG Installer Revived
-- **Hieu Van** - For the original microG Installer
-- **Contributors** - Fs00, chris42, FriendlyNeighborhoodShane, and others
+- **microG Project** – microG GmsCore and Companion  
+- **nift4** – original microG Installer Revived  
+- **Hieu Van** – original microG Installer  
+- **Contributors** – Fs00, chris42, FriendlyNeighborhoodShane, and others  
+
+---
 
 ## Links
 
-- [Report Issues](https://github.com/spacealtctrl/microg_installer_revived_again/issues)
-- [Original Project](https://github.com/nift4/microg_installer_revived)
-- [microG Project](https://microg.org)
+- [Report Issues](https://github.com/spacealtctrl/microg_installer_revived_again/issues)  
+- [Original Project](https://github.com/nift4/microg_installer_revived)  
+- [microG Project](https://microg.org)  
+- **Telegram Testing Group:** [https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
