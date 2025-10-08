@@ -13,7 +13,8 @@ A **Magisk / KernelSU module** that converts your installed microG GmsCore from 
 This is a personal side project maintained for testing and research. Current support focuses on **microG 0.3.9.250932**.  
 
 If you want to participate in testing or share results, join the Telegram testing group:
--[https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
+
+[https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
 
 ---
 
