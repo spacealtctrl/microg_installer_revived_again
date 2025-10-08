@@ -55,7 +55,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 
 **Do NOT install** if Google Play Services are present.  
 
-1. **Signature spoofing support** – check using the [Signature Spoofing Checker](https://play.google.com/store/apps/details?id=com.android.vending.signaturecheck)  
+1. **Signature spoofing support** – check using the Signature Spoofing Checker
    - If unsupported, see [FakeGApps](https://github.com/whew-inc/FakeGApps/releases)  
 
 2. **Pre-installed microG apps** – both GmsCore and Companion must be installed as **user apps** before flashing the module  
