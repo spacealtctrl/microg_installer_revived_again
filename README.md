@@ -1,4 +1,4 @@
-# microG Installer Revived… Again
+# microG Installer Revived… again
 
 A **Magisk / KernelSU module** that converts your installed microG GmsCore from a user app into a **system-level app** to improve **Play Integrity behavior** and testing on custom or rooted devices.  
 
