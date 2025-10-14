@@ -103,16 +103,6 @@ This module is intended for **testing and improving Play Integrity results**. Te
 
 **Recommendation:** use secondary devices or emulators and back up important data before testing.
 
----
-
-## Common Issues
-
-- **Maximum supported version error:** Using a newer microG than supported  
-- **Bootloop:** Enter [Magisk Safe Mode](https://topjohnwu.github.io/Magisk/faq.html)  
-- **Black screen:** Avoid Magisk Delta's SuList  
-- **App crashes:** Disable KSU Unmount modules for affected apps  
-- **Background location warnings:** Retry via App Info → Permissions  
-- **Play Store DF-DFERH-01 error:** Enable Device Registration in microG settings  
 
 ---
 
