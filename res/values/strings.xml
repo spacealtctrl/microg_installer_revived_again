@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="config_enableNetworkLocationOverlay">false</bool>
+    <string name="config_networkLocationProviderPackageName">com.google.android.gms</string>
+    <bool name="config_enableGeocoderOverlay">false</bool>
+    <string name="config_geocoderProviderPackageName">com.google.android.gms</string>
+</resources>
