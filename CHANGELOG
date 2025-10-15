@@ -1,39 +1,7 @@
 # Changelog
 
-## [5.1.0] - 2025-10-14
-- Support for microG 0.3.5+ through 0.3.10 (version code 250932020)
 
-## [5.0.1] - 2025-10-11
+[5.1.2]
 
-## Changed
-- Module name '.... again'
-- Ver strings. 
-- Test local Update
-
----
-
-## [5.0.0-0] - 2025-10-07
-
-**Fork of nift4's microg_installer_revived - Updated for modern microG**
-
-### Changed
-- Support for microG 0.3.5 through 0.3.9+ (version code 250932018)
-- Updated module ID to `microg_installer_revived_again`
-- Updated repository URLs to new fork
-- Module maintained for personal use, updates when possible
-
-### Notes
-- Module size: ~3.8 KB (does not bundle APKs)
-- Install microG as user app before flashing module
-- Tested with microG 0.3.9.250932
-
----
-
-## Previous Versions
-
-### [4.2.0-0] - nift4's last release
-- Support microG v0.3.4
-- Fix Play Store mkdir path (thanks to @MugoSquero)
-- Entered reduced maintenance mode
-
-For earlier versions, see: https://github.com/nift4/microg_installer_revived/releases
+-Code Clean up
+-Test Auto Update

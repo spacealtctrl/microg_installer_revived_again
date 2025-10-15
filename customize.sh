@@ -1,3 +1,4 @@
+
 if [ -n "$MMM_EXT_SUPPORT" ]; then
   ui_print "#!useExt"
   mmm_exec() {
@@ -6,92 +7,144 @@ if [ -n "$MMM_EXT_SUPPORT" ]; then
 else
   mmm_exec() { true; }
 fi
+
 if ! $BOOTMODE; then
     abort "- ERROR: Installation via recovery is NOT supported."
 fi
-mmm_exec setSupportLink "https://github.com/spacealtctrl/microg_installer_revived_again/issues"
 
+mmm_exec setSupportLink "https://github.com/spacealtctrl/microg_installer_revived_again/issues"
 
 MAX_VER="250932020"
 MAX_VERN="0.3.10.250932"
 
 if [ -f /data/adb/Phonesky.apk ]; then
-    ui_print "- INFO: Phonesky.apk is found in /data/adb, but this module no longer uses this file."
-    ui_print "- INFO: It won't break anything, but having that there won't make you use real Play Store anymore."
+    ui_print "- INFO: Legacy Phonesky.apk found in /data/adb"
+    ui_print "  (This file is no longer used by the module)"
 fi
 
 mmm_exec showLoading
-ui_print "Collecting information about com.google.android.gms"
-# check microG
+ui_print " "
+ui_print "==================================="
+ui_print "  microG Installer Revived.... again"
+ui_print "v5.1.2"
+ui_print "==================================="
+ui_print " "
+
+ui_print "→ Checking com.google.android.gms..."
 DUMP_GMS="$(pm dump com.google.android.gms)"
 if [[ $? -gt 0 ]]; then
-    ui_print "- WARNING: pm dump may have failed?"
+    ui_print "  ⚠ WARNING: pm dump may have failed"
 fi
-ui_print "Checking if com.google.android.gms is installed"
+
 if (echo "$DUMP_GMS" | grep "Unable to find package: com.google.android.gms") >/dev/null; then
-    abort "- ERROR: You do not have official microG installed."
+    abort "✗ ERROR: microG GmsCore is not installed"
 fi
-ui_print "Collecting file path of com.google.android.gms"
-GMS_PATH="$(realpath $(echo "$DUMP_GMS" | grep path: | head -n1 | cut -d: -f2))"
-ui_print "Checking if file path of com.google.android.gms is on /data"
-if [[ "$GMS_PATH" = "${GMS_PATH#/data/}" ]]; then
-    abort "- ERROR: expected microG install path to be on /data, but it's $GMS_PATH"
-fi
-ui_print "Checking if file path of com.google.android.gms exists"
-if ! [[ -f "$GMS_PATH" ]]; then
-    abort "- ERROR: expected microG install path to exist: $GMS_PATH"
-fi
-ui_print "Checking if com.google.android.gms is microG"
+
 if ! (echo "$DUMP_GMS" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
-    abort "- ERROR: You appear to have Google Play Services installed instead of microG."
+    abort "✗ ERROR: Google Play Services detected (microG required)"
 fi
-ui_print "Checking if com.google.android.gms is a supported version"
+
+GMS_PATH="$(realpath $(echo "$DUMP_GMS" | grep path: | head -n1 | cut -d: -f2))"
+ui_print "  ✓ Found at: $GMS_PATH"
+
+if [[ "$GMS_PATH" = "${GMS_PATH#/data/}" ]]; then
+    abort "✗ ERROR: microG must be installed on /data, found at $GMS_PATH"
+fi
+
+if ! [[ -f "$GMS_PATH" ]]; then
+    abort "✗ ERROR: microG APK not found at $GMS_PATH"
+fi
+
 GMS_VER="$(echo "$DUMP_GMS" | grep versionCode | head -n1 | cut -d" " -f5 | cut -d= -f2)"
 GMS_VERN="$(echo "$DUMP_GMS" | grep versionName | head -n1 | cut -d" " -f5 | cut -d= -f2)"
+ui_print "  ✓ Version: $GMS_VERN (code: $GMS_VER)"
+
 if [[ "$GMS_VER" -gt "$MAX_VER" ]]; then
-    abort "- ERROR: You have microG version $GMS_VERN ($GMS_VER) but the maximum supported version is $MAX_VERN ($MAX_VER)."
+    abort "✗ ERROR: microG $GMS_VERN exceeds max supported $MAX_VERN"
 fi
-# check Vending
-ui_print "Collecting information about com.android.vending"
+
+ui_print " "
+ui_print "→ Checking com.android.vending..."
 DUMP_VD="$(pm dump com.android.vending)"
 if [[ $? -gt 0 ]]; then
-    ui_print "- WARNING: pm dump may have failed?"
+    ui_print "  ⚠ WARNING: pm dump may have failed"
 fi
-ui_print "Checking if com.android.vending is installed"
+
 if (echo "$DUMP_VD" | grep "Unable to find package: com.android.vending") >/dev/null; then
-    abort "- ERROR: You do not have microG Companion or Play Store installed."
+    abort "✗ ERROR: Play Store or microG Companion not installed"
 fi
-ui_print "Collecting file path of com.android.vending"
+
 VD_PATH="$(realpath $(echo "$DUMP_VD" | grep path: | head -n1 | cut -d: -f2))"
-ui_print "Checking if file path of com.android.vending is on /data"
+ui_print "  ✓ Found at: $VD_PATH"
+
 if [[ "$VD_PATH" = "${VD_PATH#/data/}" ]]; then
-    abort "- ERROR: expected microG Companion / Play Store install path to be on /data, but it's $VD_PATH"
+    abort "✗ ERROR: Vending must be installed on /data, found at $VD_PATH"
 fi
-ui_print "Checking if file path of com.android.vending exists"
+
 if ! [[ -f "$VD_PATH" ]]; then
-    abort "- ERROR: expected microG Companion / Play Store install path to exist: $VD_PATH"
+    abort "✗ ERROR: Vending APK not found at $VD_PATH"
 fi
-# Do install tasks
-ui_print "- Installing microG GmsCore"
-if [ ! -d "/my_bigball/priv-app/GmsCore" ]; then
-  mkdir -p "$MODPATH/system/product/priv-app/GmsCore"
-  cp "$GMS_PATH" "$MODPATH/system/product/priv-app/GmsCore/GmsCore.apk"
-else
-  mkdir -p "$MODPATH/system/priv-app/microG"
-  cp "$GMS_PATH" "$MODPATH/system/priv-app/microG/microG.apk"
-fi
+
+VD_VER="$(echo "$DUMP_VD" | grep versionCode | head -n1 | cut -d" " -f5 | cut -d= -f2)"
+VD_VERN="$(echo "$DUMP_VD" | grep versionName | head -n1 | cut -d" " -f5 | cut -d= -f2)"
+
 if (echo "$DUMP_VD" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
-  ui_print "- Installing microG Companion"
+  ui_print "  ✓ Type: microG Companion"
+  VENDING_TYPE="microG Companion"
+else
+  ui_print "  ✓ Type: Play Store"
+  VENDING_TYPE="Play Store"
+fi
+
+ui_print "  ✓ Version: $VD_VERN (code: $VD_VER)"
+
+ui_print " "
+ui_print "==================================="
+ui_print "  Installing to System Partition"
+ui_print "==================================="
+ui_print " "
+
+if [ ! -d "/my_bigball/priv-app/GmsCore" ]; then
+  ui_print "→ Installing microG GmsCore..."
+  ui_print "  Destination: /system/product/priv-app/GmsCore/"
+  mkdir -p "$MODPATH/system/product/priv-app/GmsCore" || abort "✗ ERROR: Failed to create directory"
+  cp "$GMS_PATH" "$MODPATH/system/product/priv-app/GmsCore/GmsCore.apk" || abort "✗ ERROR: Failed to copy GmsCore.apk"
+  ui_print "  ✓ GmsCore.apk installed successfully"
+else
+  ui_print "→ Installing microG GmsCore..."
+  ui_print "  Destination: /system/priv-app/microG/"
+  mkdir -p "$MODPATH/system/priv-app/microG" || abort "✗ ERROR: Failed to create directory"
+  cp "$GMS_PATH" "$MODPATH/system/priv-app/microG/microG.apk" || abort "✗ ERROR: Failed to copy microG.apk"
+  ui_print "  ✓ microG.apk installed successfully"
+fi
+
+ui_print " "
+ui_print "→ Installing $VENDING_TYPE..."
+
+if (echo "$DUMP_VD" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
+  ui_print "  Granting signature spoofing permission..."
   pm grant com.android.vending android.permission.FAKE_PACKAGE_SIGNATURE 2>/dev/null
-  ui_print "Installing microG Companion"
-else
-  ui_print "- Installing Play Store"
 fi
-if ! [ -d "/my_bigball/priv-app/GmsCore" ]; then
-  mkdir -p "$MODPATH/system/product/priv-app/Phonesky"
-  cp "$VD_PATH" "$MODPATH/system/product/priv-app/Phonesky/Phonesky.apk"
+
+if [ ! -d "/my_bigball/priv-app/GmsCore" ]; then
+  ui_print "  Destination: /system/product/priv-app/Phonesky/"
+  mkdir -p "$MODPATH/system/product/priv-app/Phonesky" || abort "✗ ERROR: Failed to create directory"
+  cp "$VD_PATH" "$MODPATH/system/product/priv-app/Phonesky/Phonesky.apk" || abort "✗ ERROR: Failed to copy Phonesky.apk"
+  ui_print "  ✓ Phonesky.apk installed successfully"
 else
-  mkdir -p "$MODPATH/system/priv-app/Phonesky"
-  cp "$VD_PATH" "$MODPATH/system/priv-app/Phonesky/Phonesky.apk"
+  ui_print "  Destination: /system/priv-app/Phonesky/"
+  mkdir -p "$MODPATH/system/priv-app/Phonesky" || abort "✗ ERROR: Failed to create directory"
+  cp "$VD_PATH" "$MODPATH/system/priv-app/Phonesky/Phonesky.apk" || abort "✗ ERROR: Failed to copy Phonesky.apk"
+  ui_print "  ✓ Phonesky.apk installed successfully"
 fi
+
+ui_print " "
+ui_print "==================================="
+ui_print "  Installation Complete!"
+ui_print "==================================="
+ui_print " "
+ui_print "Your apps have been moved to /system"
+ui_print "Reboot to apply changes"
+ui_print " "
+
 mmm_exec hideLoading
