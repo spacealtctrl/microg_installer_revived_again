@@ -8,32 +8,13 @@ A **Magisk / KernelSU module** that converts your installed microG GmsCore from 
 
 ---
 
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="60" alt="Telegram Logo" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://microg.org/images/logo.png" width="60" alt="microG Logo" />
-</p>
+## ⚠ Personal Project Notice
 
-<h2 align="center">Personal Project Notice</h2>
+This is a personal side project maintained for testing and research. Current support focuses on **microG 0.3.10.250932**.  
 
-<p align="center">
-  <i>This is a personal side project maintained for testing and research.</i><br>
-  <b>Current support focuses on:</b> microG <code>v0.3.10.250932</code>
-</p>
+If you want to participate in testing or share results, join the Telegram testing group:
 
----
-
-<p align="center">
-  <a href="https://t.me/microGRevivedAgain">
-    <img src="https://img.shields.io/badge/Join%20Telegram%20Testing%20Group-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Join Telegram" />
-  </a>
-</p>
-
----
-
-<p align="center">
-  <i>Your feedback, logs, and results help improve this project — every tester matters.</i>
-</p>
+[https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
 
 ---
 
