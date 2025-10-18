@@ -26,7 +26,7 @@ mmm_exec showLoading
 ui_print " "
 ui_print "==================================="
 ui_print "  microG Installer Revived.... again"
-ui_print "v5.1.2"
+ui_print "  v5.1.2"
 ui_print "==================================="
 ui_print " "
 
