@@ -1,3 +1,4 @@
+[![Telegram](https://img.shields.io/badge/Telegram-microGRevivedAgain-blue?logo=telegram)](https://t.me/microGRevivedAgain)
 [![Website](https://img.shields.io/badge/Website-spacealtctrl.net-blue)](https://spacealtctrl.net)
 # microG Installer Revived… again
 
