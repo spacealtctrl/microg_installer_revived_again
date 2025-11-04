@@ -17,7 +17,7 @@ This is a personal side project maintained for testing and research. Current sup
 
 If you want to participate in testing or share results, join the Telegram testing group:
 
-[https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
+[https://t.me/microGRevivedAgainResults](https://t.me/microGRevivedAgainResults)
 
 ---
 
@@ -123,4 +123,4 @@ This module is intended for **testing and improving Play Integrity results**. Te
 - [Report Issues](https://github.com/spacealtctrl/microg_installer_revived_again/issues)  
 - [Original Project](https://github.com/nift4/microg_installer_revived)  
 - [microG Project](https://microg.org)  
-- **Telegram Testing Group:** [https://t.me/microGRevivedAgain](https://t.me/microGRevivedAgain)
+- **Telegram Testing Group:** [https://t.me/microGRevivedAgainResults](https://t.me/microGRevivedAgainResults)
