@@ -49,7 +49,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 | Component           | Version Tested     |
 |--------------------|--------------------|
 | microG GmsCore      | 0.3.10.250932      |
-| microG Companion    | 0.3.10.40226       |
+| microG Companion    | 0.3.10.840226       |
 | Older microG        | 0.3.5+ (untested)  |
 
 ---
