@@ -26,7 +26,7 @@ mmm_exec showLoading
 ui_print " "
 ui_print "==================================="
 ui_print "  microG Installer Revived.... again"
-ui_print "  v5.1.2"
+ui_print "  v5.1.3"
 ui_print "==================================="
 ui_print " "
 
@@ -118,24 +118,19 @@ else
   ui_print "  ✓ microG.apk installed successfully"
 fi
 
-ui_print " "
-ui_print "→ Installing $VENDING_TYPE..."
-
 if (echo "$DUMP_VD" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
-  ui_print "  Granting signature spoofing permission..."
+  ui_print "- Installing microG Companion"
   pm grant com.android.vending android.permission.FAKE_PACKAGE_SIGNATURE 2>/dev/null
-fi
-
-if [ ! -d "/my_bigball/priv-app/GmsCore" ]; then
-  ui_print "  Destination: /system/product/priv-app/Phonesky/"
-  mkdir -p "$MODPATH/system/product/priv-app/Phonesky" || abort "✗ ERROR: Failed to create directory"
-  cp "$VD_PATH" "$MODPATH/system/product/priv-app/Phonesky/Phonesky.apk" || abort "✗ ERROR: Failed to copy Phonesky.apk"
-  ui_print "  ✓ Phonesky.apk installed successfully"
+  ui_print "Installing microG Companion"
 else
-  ui_print "  Destination: /system/priv-app/Phonesky/"
-  mkdir -p "$MODPATH/system/priv-app/Phonesky" || abort "✗ ERROR: Failed to create directory"
-  cp "$VD_PATH" "$MODPATH/system/priv-app/Phonesky/Phonesky.apk" || abort "✗ ERROR: Failed to copy Phonesky.apk"
-  ui_print "  ✓ Phonesky.apk installed successfully"
+  ui_print "- Installing Play Store"
+fi
+if ! [ -d "/my_bigball/priv-app/GmsCore" ]; then
+  mkdir -p "$MODPATH/system/product/priv-app/Phonesky"
+  cp "$VD_PATH" "$MODPATH/system/product/priv-app/Phonesky/Phonesky.apk"
+else
+  mkdir -p "$MODPATH/system/priv-app/Phonesky"
+  cp "$VD_PATH" "$MODPATH/system/priv-app/Phonesky/Phonesky.apk"
 fi
 
 ui_print " "
