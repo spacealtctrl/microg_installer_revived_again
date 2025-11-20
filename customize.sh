@@ -87,15 +87,6 @@ fi
 
 VD_VER="$(echo "$DUMP_VD" | grep versionCode | head -n1 | cut -d" " -f5 | cut -d= -f2)"
 VD_VERN="$(echo "$DUMP_VD" | grep versionName | head -n1 | cut -d" " -f5 | cut -d= -f2)"
-
-if (echo "$DUMP_VD" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
-  ui_print "  ✓ Type: microG Companion"
-  VENDING_TYPE="microG Companion"
-else
-  ui_print "  ✓ Type: Play Store"
-  VENDING_TYPE="Play Store"
-fi
-
 ui_print "  ✓ Version: $VD_VERN (code: $VD_VER)"
 
 ui_print " "
@@ -118,6 +109,7 @@ else
   ui_print "  ✓ microG.apk installed successfully"
 fi
 
+ui_print " "
 if (echo "$DUMP_VD" | grep "android.permission.FAKE_PACKAGE_SIGNATURE") >/dev/null; then
   ui_print "- Installing microG Companion"
   pm grant com.android.vending android.permission.FAKE_PACKAGE_SIGNATURE 2>/dev/null
