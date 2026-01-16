@@ -14,8 +14,8 @@ fi
 
 mmm_exec setSupportLink "https://github.com/spacealtctrl/microg_installer_revived_again/issues"
 
-MAX_VER="250932022"
-MAX_VERN="0.3.11.250932"
+MAX_VER="250932024"
+MAX_VERN="0.3.12.250932"
 
 if [ -f /data/adb/Phonesky.apk ]; then
     ui_print "- INFO: Legacy Phonesky.apk found in /data/adb"
@@ -26,7 +26,7 @@ mmm_exec showLoading
 ui_print " "
 ui_print "==================================="
 ui_print "  microG Installer Revived.... again"
-ui_print "  v5.2.0"
+ui_print "  v5.3.0"
 ui_print "==================================="
 ui_print " "
 
