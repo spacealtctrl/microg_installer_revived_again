@@ -68,7 +68,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 ## Installation
 
 1. Verify signature spoofing is enabled  
-2. Install **microG GmsCore 0.3.11.250932** as a user app  
+2. Install **microG GmsCore 0.3.12.250932**  
 3. Install **microG Companion / Play Store variant** as a user app  
 4. Flash this module via Magisk or KernelSU  
 5. Reboot  
