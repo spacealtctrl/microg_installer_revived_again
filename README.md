@@ -5,7 +5,7 @@
 
 A **Magisk / KernelSU module** that converts your installed microG GmsCore from a user app into a **system-level app** to improve **Play Integrity behavior** and testing on custom or rooted devices.  
 
-**Forked from nift4's microG Installer Revived** — updated to support **microG 0.3.11.250932**.
+**Forked from nift4's microG Installer Revived** — updated to support **microG 0.3.12.250932**.
 
 > **Note:** This module does not bundle or install microG. It promotes your already-installed microG to the system layer with proper privileges. Think of it as a **converter**, not a traditional installer.
 
@@ -48,8 +48,8 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 
 | Component           | Version Tested     |
 |--------------------|--------------------|
-| microG GmsCore      | 0.3.11.250932      |
-| microG Companion    | 0.3.11.840226      |
+| microG GmsCore      | 0.3.12.250932      |
+| microG Companion    | 0.3.12.840226      |
 | Older microG        | 0.3.5+ (untested)  |
 
 ---
@@ -80,7 +80,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 
 ## Updating microG
 
-For updates **within the 0.3.11.x series**, simply install the new APK — no need to reflash the module.  
+For updates **within the 0.3.12.x series**, simply install the new APK — no need to reflash the module.  
 
 Sources:  
 - [microG GitHub Releases](https://github.com/microg/GmsCore/releases)  
