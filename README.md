@@ -5,7 +5,7 @@
 
 A **Magisk / KernelSU module** that converts your installed microG GmsCore from a user app into a **system-level app** to improve **Play Integrity behavior** and testing on custom or rooted devices.  
 
-**Forked from nift4's microG Installer Revived** — updated to support **microG 0.3.12.250932**.
+**Forked from nift4's microG Installer Revived** — updated to support **microG 0.3.13.250932**.
 
 > **Note:** This module does not bundle or install microG. It promotes your already-installed microG to the system layer with proper privileges. Think of it as a **converter**, not a traditional installer.
 
@@ -13,7 +13,7 @@ A **Magisk / KernelSU module** that converts your installed microG GmsCore from 
 
 ## ⚠ Personal Project Notice
 
-This is a personal side project maintained for testing and research. Current support focuses on **microG 0.3.12.250932**.  
+This is a personal side project maintained for testing and research. Current support focuses on **microG 0.3.13.250932**.  
 
 If you want to participate in testing or share results, join the Telegram testing group:
 
@@ -48,8 +48,8 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 
 | Component           | Version Tested     |
 |--------------------|--------------------|
-| microG GmsCore      | 0.3.12.250932      |
-| microG Companion    | 0.3.12.840226      |
+| microG GmsCore      | 0.3.13.250932      |
+| microG Companion    | 0.3.13.840226      |
 | Older microG        | 0.3.5+ (untested)  |
 
 ---
@@ -68,7 +68,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 ## Installation
 
 1. Verify signature spoofing is enabled  
-2. Install **microG GmsCore 0.3.12.250932**  
+2. Install **microG GmsCore 0.3.13.250932**  
 3. Install **microG Companion / Play Store variant** as a user app  
 4. Flash this module via Magisk or KernelSU  
 5. Reboot  
@@ -80,7 +80,7 @@ This approach provides a safe, reversible way to **evaluate Play Integrity respo
 
 ## Updating microG
 
-For updates **within the 0.3.12.x series**, simply install the new APK — no need to reflash the module.  
+For updates **within the 0.3.13.x series**, simply install the new APK — no need to reflash the module.  
 
 Sources:  
 - [microG GitHub Releases](https://github.com/microg/GmsCore/releases)  
