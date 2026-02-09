@@ -14,8 +14,8 @@ fi
 
 mmm_exec setSupportLink "https://github.com/spacealtctrl/microg_installer_revived_again/issues"
 
-MAX_VER="250932024"
-MAX_VERN="0.3.12.250932"
+MAX_VER="250932026"
+MAX_VERN="0.3.13.250932"
 
 if [ -f /data/adb/Phonesky.apk ]; then
     ui_print "- INFO: Legacy Phonesky.apk found in /data/adb"
@@ -26,10 +26,22 @@ mmm_exec showLoading
 ui_print " "
 ui_print "==================================="
 ui_print "  microG Installer Revived.... again"
-ui_print "  v5.3.0"
+ui_print "  v5.4.0"
 ui_print "==================================="
 ui_print " "
 
+ui_print "→ Checking for metamodule..."
+if [ ! -d "/data/adb/metamodule" ] || [ ! -f "/data/adb/metamodule/module.prop" ]; then
+    abort "✗ ERROR: No metamodule found. Please install a metamodule to /data/adb/metamodule before continuing."
+fi
+
+META_NAME="$(head -n1 /data/adb/metamodule/module.prop | cut -d= -f2)"
+if [ -z "$META_NAME" ]; then
+    abort "✗ ERROR: metamodule not detected. Please install a valid metamodule."
+fi
+ui_print "  ✓ Metamodule detected: $META_NAME"
+
+ui_print " "
 ui_print "→ Checking com.google.android.gms..."
 DUMP_GMS="$(pm dump com.google.android.gms)"
 if [[ $? -gt 0 ]]; then

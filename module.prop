@@ -1,7 +1,7 @@
 id=microg_installer_revived_again
 name=microG Installer Revived.... again
-version=5.3.0
-versionCode=530
+version=5.4.0
+versionCode=540
 author=spacealtctrl
 description=Moves your installed microG apps to '/system/priv-app' with privileged permissions
 updateJson=https://raw.githubusercontent.com/spacealtctrl/microg_installer_revived_again/master/update.json
