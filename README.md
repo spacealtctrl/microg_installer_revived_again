@@ -16,7 +16,7 @@ This module improves how microG interacts with the Android system by converting 
 ### Features
 
 - **System-Level Promotion**: Promotes your installed microG and Companion apps to `/system/product/priv-app/` or `/system/priv-app/` for system-level permissions.
-- **In-App WebUI**: Manage everything from a clean interface embedded directly inside KernelSU. For Magisk users, the [WebUI X](https://github.com/DerEffe/webui-x) module is recommended to view this interface.
+- **In-App WebUI**: Manage everything from a clean interface embedded directly inside KernelSU. For Magisk users, the [WebUI X](https://github.com/MMRLApp/WebUI-X-Portable) module is recommended to view this interface.
 - **Promote / Demote**: Easily toggle the module active state and manage your microG system apps.
 - **Built-in microG Updater**: Features an "Installer" that fetches the latest official releases from the microG GitHub repository, allowing you to quickly download and update your APKs.
 - **Multi-Language Support**: The WebUI is localized for community-driven translations.
@@ -35,7 +35,7 @@ This module improves how microG interacts with the Android system by converting 
 2. Flash the `microg_installer_revived_again` ZIP file via Magisk or KernelSU.
 3. Reboot your device.
 4. **KernelSU Users**: Open the KernelSU app, navigate to the Modules tab, and tap the module to open the WebUI. From here you can check status, manage updates, and access logs (if enabled).
-5. **Magisk Users**: I suggest using [WebUI X](https://github.com/DerEffe/webui-x) to interact with the module's interface. Otherwise, rely on `customize.sh` which will automatically promote the APKs you installed prior to flashing.
+5. **Magisk Users**: I suggest using [WebUI X](https://github.com/MMRLApp/WebUI-X-Portable) to interact with the module's interface. Otherwise, rely on `customize.sh` which will automatically promote the APKs you installed prior to flashing.
 
 ---
 
