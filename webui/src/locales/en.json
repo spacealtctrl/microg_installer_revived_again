@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Home",
+    "installer": "Installer",
+    "logs": "Logs",
+    "settings": "Info"
+  },
+  "home": {
+    "title": "microG Installer Revived.... again",
+    "checking": "Checking...",
+    "detecting": "Detecting module status",
+    "active": "Module is active",
+    "tap_disable": "Tap to disable overlay",
+    "disabled": "Module is disabled",
+    "tap_enable": "Tap to enable overlay",
+    "not_active": "Module is not active",
+    "needs_promote": "Apps need to be promoted",
+    "settings_btn": "Module Settings",
+    "microg_settings_btn": "Open microG Settings",
+    "settings_title": "Module Settings",
+    "theme": "Theme",
+    "language": "Language",
+    "padding": "Bottom Padding",
+    "scale": "Page Scale",
+    "debug_logging": "Debug logging",
+    "close": "Close",
+    "theme_space": "Space",
+    "theme_light": "Light",
+    "theme_dark": "Dark"
+  },
+  "installer": {
+    "title": "microG Installer",
+    "retry": "Retry",
+    "no_releases": "No releases found.",
+    "more": "more...",
+    "metamodules": "metamodules"
+  },
+  "logs": {
+    "title": "Debug Logs",
+    "refresh": "Refresh",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "clear": "Clear",
+    "loading": "Loading...",
+    "empty": "No logs yet. Logs are written during module operations.",
+    "error_read": "Failed to read log file."
+  },
+  "settings": {
+    "microg_by": "by microG Project",
+    "microg_desc": "A FLOSS framework allowing apps designed for Google Play Services<br />to run on systems where Play Services is not available.",
+    "source_code": "Source Code",
+    "website": "Website",
+    "module_title": "microG Installer Revived.... again",
+    "module_by": "by spacealtctrl",
+    "version": "Version"
+  },
+  "status": {
+    "not_installed": "Not installed",
+    "play_services_detected": "Google Play Services detected (not microG)",
+    "microg_gmscore": "microG GmsCore",
+    "microg_companion_play": "microG Companion/Play Store",
+    "play_store": "Play Store",
+    "microg_companion": "microG Companion",
+    "metamodule": "Metamodule",
+    "promoting": "Promoting...",
+    "promoted": "Promoted",
+    "promote": "Promote",
+    "promote_subtext_demote": "GmsCore and {app} promoted to '/priv-app/' - <b>Hold to demote</b>",
+    "promote_subtext_promote": "Nothing promoted - <b>Hold to promote</b>",
+    "companion": "Companion"
+  },
+  "release": {
+    "latest": "Latest",
+    "current": "Current",
+    "no_apks": "No APKs available for your device type."
+  },
+  "apk": {
+    "downloading": "Downloading",
+    "installing": "Installing",
+    "finishing": "Finishing",
+    "uninstalling": "Uninstalling",
+    "uninstalled": "Uninstalled",
+    "installed": "Installed",
+    "failed": "Failed",
+    "install": "Install",
+    "confirm_uninstall_title": "Are you sure you want to uninstall?",
+    "warning_active_title": "Module is active",
+    "warning_active_text": "Uninstalling while the module is active may cause a bootloop. Disable the module and reboot before uninstalling.",
+    "cancel": "Cancel",
+    "uninstall": "Uninstall"
+  },
+  "toast": {
+    "press_back_exit": "Press back again to exit",
+    "installing": "Installing {name}...",
+    "uninstalling": "Uninstalling {name}...",
+    "module_disabled_reboot": "Module disabled and apps demoted — reboot to apply",
+    "module_enabled_reboot": "Module enabled and apps promoted — reboot to apply",
+    "failed_toggle_module": "Failed to toggle module",
+    "installed_success": "{name} installed successfully",
+    "install_failed": "Failed to install {name}",
+    "uninstalled_success": "{name} uninstalled",
+    "uninstall_failed": "Failed to uninstall {name}",
+    "demoted_reboot": "Demoted — reboot to apply",
+    "promoted_reboot": "Promoted — reboot to apply",
+    "failed": "Failed"
+  },
+  "error": {
+    "fetch_releases": "Failed to fetch releases",
+    "detection_failed": "Detection failed"
+  }
+}

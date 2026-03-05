@@ -1,4 +1,4 @@
-Please note that microg_installer_revived is in reduced maintenance / no support mode. See README for more information.
-
-- Support microG v0.3.4
-- fix Play Store mkdir path (thanks to @MugoSquero), may fix #171
+v1.0.0-0
+- Initial full release
+- Promotes microG GmsCore and Companion/Play Store to system priv-app
+- WebUI for managing promote/demote and downloading updates
