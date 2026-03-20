@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "首页",
+    "installer": "安装器",
+    "logs": "日志",
+    "settings": "信息"
+  },
+  "home": {
+    "title": "microG 安装器",
+    "checking": "检查中……",
+    "detecting": "正在检测模块状态",
+    "active": "模块已激活",
+    "tap_disable": "点击禁用挂载",
+    "disabled": "模块已禁用",
+    "tap_enable": "点击启用挂载",
+    "not_active": "模块未激活",
+    "needs_promote": "需要提升为系统应用",
+    "settings_btn": "模块设置",
+    "microg_settings_btn": "打开 microG 设置",
+    "settings_title": "模块设置",
+    "theme": "主题",
+    "language": "语言",
+    "padding": "底栏高度",
+    "scale": "页面缩放",
+    "debug_logging": "调试日志记录",
+    "close": "关闭",
+    "theme_space": "星空",
+    "theme_light": "浅色",
+    "theme_dark": "深色"
+  },
+  "installer": {
+    "title": "microG 安装器",
+    "retry": "重试",
+    "no_releases": "未找到发布版本。",
+    "more": "更多……",
+    "metamodules": "元模块"
+  },
+  "logs": {
+    "title": "调试日志",
+    "refresh": "刷新",
+    "copy": "复制",
+    "copied": "已复制！",
+    "clear": "清除",
+    "loading": "加载中……",
+    "empty": "暂无日志。日志会在模块操作期间生成。",
+    "error_read": "读取日志文件失败。"
+  },
+  "settings": {
+    "microg_by": "由 microG 项目开发",
+    "microg_desc": "一个自由/开源软件框架，允许专为 Google Play 服务设计的应用在没有 Play 服务时运行。",
+    "source_code": "源代码",
+    "website": "网站",
+    "module_title": "microG 安装器",
+    "module_by": "由 spacealtctrl 开发",
+    "version": "版本"
+  },
+  "status": {
+    "not_installed": "未安装",
+    "play_services_detected": "检测到 Google Play 服务（非 microG）",
+    "microg_gmscore": "microG 服务",
+    "microg_companion_play": "microG 伴侣/Play 商店",
+    "play_store": "Play 商店",
+    "microg_companion": "microG 伴侣",
+    "metamodule": "元模块",
+    "promoting": "提升中……",
+    "promoted": "已提升",
+    "promote": "提升",
+    "promote_subtext_demote": "microG 服务 和 {app} 已提升至 '/priv-app/' -",
+    "promote_subtext_promote": "未提升任何内容 -",
+    "companion": "microG 伴侣"
+  },
+  "release": {
+    "latest": "最新",
+    "current": "当前",
+    "no_apks": "没有适用于您设备类型的 APK。"
+  },
+  "apk": {
+    "downloading": "下载中",
+    "installing": "安装中",
+    "finishing": "完成中",
+    "uninstalling": "卸载中",
+    "uninstalled": "已卸载",
+    "installed": "已安装",
+    "failed": "失败",
+    "install": "安装",
+    "confirm_uninstall_title": "您确定要卸载吗？",
+    "warning_active_title": "模块已激活",
+    "warning_active_text": "在模块激活状态下卸载可能会导致启动循环。请先禁用模块并重启后再卸载。",
+    "cancel": "取消",
+    "uninstall": "卸载"
+  },
+  "toast": {
+    "press_back_exit": "再按一次返回键退出",
+    "installing": "正在安装 {name}……",
+    "uninstalling": "正在卸载 {name}……",
+    "module_disabled_reboot": "模块已禁用且应用已降级 — 重启以应用更改",
+    "module_enabled_reboot": "模块已启用且应用已提升 — 重启以应用更改",
+    "failed_toggle_module": "切换模块失败",
+    "installed_success": "安装 {name} 成功",
+    "install_failed": "安装 {name} 失败",
+    "uninstalled_success": "{name} 已卸载",
+    "uninstall_failed": "卸载 {name} 失败",
+    "demoted_reboot": "已降级 — 重启以应用",
+    "promoted_reboot": "已提升 — 重启以应用",
+    "failed": "失败"
+  },
+  "error": {
+    "fetch_releases": "获取发布版本失败",
+    "detection_failed": "检测失败"
+  }
+}
