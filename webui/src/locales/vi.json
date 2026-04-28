@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "installer": "Trình cài đặt",
+    "logs": "Nhật ký",
+    "settings": "Thông tin"
+  },
+  "home": {
+    "title": "microG Installer Revived.... again",
+    "checking": "Đang kiểm tra...",
+    "detecting": "Đang nhận diện trạng thái module",
+    "active": "Module đang hoạt động",
+    "tap_disable": "Chạm để tắt overlay",
+    "disabled": "Module đã bị tắt",
+    "tap_enable": "Chạm để bật overlay",
+    "not_active": "Module không hoạt động",
+    "needs_promote": "Ứng dụng cần được cấp đặc quyền hệ thống",
+    "settings_btn": "Cài đặt Module",
+    "microg_settings_btn": "Mở cài đặt microG",
+    "settings_title": "Cài đặt Module",
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "padding": "Khoảng cách lề dưới",
+    "scale": "Tỷ lệ trang",
+    "debug_logging": "Ghi nhật ký gỡ lỗi",
+    "close": "Đóng",
+    "theme_space": "Vũ trụ",
+    "theme_light": "Sáng",
+    "theme_dark": "Tối"
+  },
+  "installer": {
+    "title": "Trình cài đặt microG",
+    "retry": "Thử lại",
+    "no_releases": "Không tìm thấy bản phát hành.",
+    "more": "xem thêm...",
+    "metamodules": "metamodules"
+  },
+  "logs": {
+    "title": "Nhật ký lỗi",
+    "refresh": "Làm mới",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "clear": "Xóa sạch",
+    "loading": "Đang tải...",
+    "empty": "Chưa có nhật ký. Nhật ký được ghi khi module vận hành.",
+    "error_read": "Không thể đọc tệp nhật ký."
+  },
+  "settings": {
+    "microg_by": "được phát triển bởi microG Project",
+    "microg_desc": "Một framework mã nguồn mở cho phép các ứng dụng yêu cầu Google Play Services<br />chạy trên các hệ thống không có Play Services.",
+    "source_code": "Mã nguồn",
+    "website": "Trang web",
+    "module_title": "microG Installer Revived.... again",
+    "module_by": "được phát triển bởi spacealtctrl",
+    "version": "Phiên bản"
+  },
+  "status": {
+    "not_installed": "Chưa được cài đặt",
+    "play_services_detected": "Đã phát hiện Google Play Services (không phải microG)",
+    "microg_gmscore": "microG GmsCore",
+    "microg_companion_play": "microG Companion/Cửa hàng Play",
+    "play_store": "Cửa hàng Play",
+    "microg_companion": "microG Companion",
+    "metamodule": "Metamodule",
+    "promoting": "Đang cấp đặc quyền...",
+    "promoted": "Đã cấp đặc quyền",
+    "promote": "Cấp đặc quyền",
+    "promote_subtext_demote": "GmsCore và {app} đã được chuyển vào '/priv-app/' - <b>Nhấn giữ để gỡ đặc quyền</b>",
+    "promote_subtext_promote": "Chưa được cấp đặc quyền - <b>Nhấn giữ để cấp đặc quyền</b>",
+    "companion": "Companion"
+  },
+  "release": {
+    "latest": "Mới nhất",
+    "current": "Hiện tại",
+    "no_apks": "Không tìm thấy APK tương thích với thiết bị."
+  },
+  "apk": {
+    "downloading": "Đang tải xuống",
+    "installing": "Đang cài đặt",
+    "finishing": "Đang hoàn tất",
+    "uninstalling": "Đang gỡ cài đặt",
+    "uninstalled": "Đã gỡ cài đặt",
+    "installed": "Đã cài đặt",
+    "failed": "Không thành công",
+    "install": "Cài đặt",
+    "confirm_uninstall_title": "Có chắc là bạn muốn gỡ cài đặt?",
+    "warning_active_title": "Module đang hoạt động",
+    "warning_active_text": "Gỡ cài đặt khi module đang hoạt động có thể gây ra lỗi vòng lặp khởi động. Hãy tắt module và khởi động lại thiết bị trước khi gỡ cài đặt.",
+    "cancel": "Hủy",
+    "uninstall": "Gỡ cài đặt"
+  },
+  "toast": {
+    "press_back_exit": "Nhấn quay lại lần nữa để thoát",
+    "installing": "Đang cài đặt {name}...",
+    "uninstalling": "Đang gỡ cài đặt {name}...",
+    "module_disabled_reboot": "Đã tắt module và gỡ đặc quyền — khởi động lại để áp dụng thay đổi",
+    "module_enabled_reboot": "Đã bật module và cấp đặc quyền — khởi động lại để áp dụng thay đổi",
+    "failed_toggle_module": "Không thể thay đổi trạng thái module",
+    "installed_success": "Đã cài đặt {name} thành công",
+    "install_failed": "Không thể cài đặt {name}",
+    "uninstalled_success": "Đã gỡ cài đặt {name}",
+    "uninstall_failed": "Không thể gỡ cài đặt {name}",
+    "demoted_reboot": "Đã gỡ đặc quyền — khởi động lại để áp dụng thay đổi",
+    "promoted_reboot": "Đã cấp đặc quyền — khởi động lại để áp dụng thay đổi",
+    "failed": "Không thành công"
+  },
+  "error": {
+    "fetch_releases": "Không thể lấy dữ liệu bản phát hành",
+    "detection_failed": "Không thể nhận diện"
+  }
+}
