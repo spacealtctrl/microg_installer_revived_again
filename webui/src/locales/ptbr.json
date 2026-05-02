@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Início",
+    "installer": "Instalador",
+    "logs": "Logs",
+    "settings": "Informações"
+  },
+  "home": {
+    "title": "microG Installer Revived.... de novo",
+    "checking": "Verificando...",
+    "detecting": "Detectando o status do módulo",
+    "active": "O módulo está ativo",
+    "tap_disable": "Toque para desativar o overlay",
+    "disabled": "O módulo está desativado",
+    "tap_enable": "Toque para ativar o overlay",
+    "not_active": "O módulo não está ativo",
+    "needs_promote": "Os apps precisam ser promovidos",
+    "settings_btn": "Configurações do módulo",
+    "microg_settings_btn": "Abrir configurações do microG",
+    "settings_title": "Configurações do módulo",
+    "theme": "Tema",
+    "language": "Idioma",
+    "padding": "Espaçamento inferior",
+    "scale": "Escala da página",
+    "debug_logging": "Registro de depuração",
+    "close": "Fechar",
+    "theme_space": "Espaço",
+    "theme_light": "Claro",
+    "theme_dark": "Escuro"
+  },
+  "installer": {
+    "title": "Instalador do microG",
+    "retry": "Tentar novamente",
+    "no_releases": "Nenhum novo lançamento encontrado.",
+    "more": "mais...",
+    "metamodules": "metamódulos"
+  },
+  "logs": {
+    "title": "Logs de depuração",
+    "refresh": "Atualizar",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "clear": "Limpar",
+    "loading": "Carregando...",
+    "empty": "Ainda não há logs. Os logs são gravados durante as operações do módulo.",
+    "error_read": "Falha ao ler o arquivo de log."
+  },
+  "settings": {
+    "microg_by": "pelo projeto microG",
+    "microg_desc": "Um framework FLOSS que permite que aplicativos projetados para o Google Play Services<br />sejam executados em sistemas onde o Play Services não está disponível.",
+    "source_code": "Código-fonte",
+    "website": "Site",
+    "module_title": "microG Installer Revived.... de novo",
+    "module_by": "por spacealtctrl",
+    "version": "Versão"
+  },
+  "status": {
+    "not_installed": "Não instalado",
+    "play_services_detected": "Google Play Services detectado (não o microG)",
+    "microg_gmscore": "microG GmsCore",
+    "microg_companion_play": "microG Companion/Play Store",
+    "play_store": "Play Store",
+    "microg_companion": "microG Companion",
+    "metamodule": "Metamódulo",
+    "promoting": "Promovendo...",
+    "promoted": "Promovido",
+    "promote": "Promover",
+    "promote_subtext_demote": "GmsCore e {app} promovidos para '/priv-app/' - <b>Segure para despromover</b>",
+    "promote_subtext_promote": "Nada promovido - <b>Segure para promover</b>",
+    "companion": "Companion"
+  },
+  "release": {
+    "latest": "Mais recente",
+    "current": "Atual",
+    "no_apks": "Nenhum APK disponível para o seu modelo de dispositivo."
+  },
+  "apk": {
+    "downloading": "Baixando",
+    "installing": "Instalando",
+    "finishing": "Finalizando",
+    "uninstalling": "Desinstalando",
+    "uninstalled": "Desinstalado",
+    "installed": "Instalado",
+    "failed": "Falhou",
+    "install": "Instalar",
+    "confirm_uninstall_title": "Tem certeza de que deseja desinstalar?",
+    "warning_active_title": "O módulo está ativo",
+    "warning_active_text": "Desinstalar enquanto o módulo está ativo pode causar um bootloop. Desative o módulo e reinicie antes de desinstalar.",
+    "cancel": "Cancelar",
+    "uninstall": "Desinstalar"
+  },
+  "toast": {
+    "press_back_exit": "Pressione voltar novamente para sair",
+    "installing": "Instalando {name}...",
+    "uninstalling": "Desinstalando {name}...",
+    "module_disabled_reboot": "Módulo desativado e apps despromovidos — reinicie para aplicar",
+    "module_enabled_reboot": "Módulo ativado e apps promovidos — reinicie para aplicar",
+    "failed_toggle_module": "Falha ao alternar o módulo",
+    "installed_success": "{name} instalado com sucesso",
+    "install_failed": "Falha ao instalar {name}",
+    "uninstalled_success": "{name} desinstalado",
+    "uninstall_failed": "Falha ao desinstalar {name}",
+    "demoted_reboot": "Despromovido — reinicie para aplicar",
+    "promoted_reboot": "Promovido — reinicie para aplicar",
+    "failed": "Falhou"
+  },
+  "error": {
+    "fetch_releases": "Falha ao buscar os lançamentos",
+    "detection_failed": "Falha na detecção"
+  }
+}
