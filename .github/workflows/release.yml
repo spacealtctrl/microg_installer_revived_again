@@ -62,20 +62,28 @@ jobs:
           fi
 
           CHANGELOG_BLOCK=$(awk -v v="$VERSION" '
-            $0=="v"v {found=1; print; next}
+            $0=="v"v {found=1; next}
             found && /^v[0-9]/ {exit}
             found {print}
           ' CHANGELOG)
-          {
-            echo "CHANGELOG<<EOF"
-            echo "$CHANGELOG_BLOCK"
-            echo "EOF"
-          } >> "$GITHUB_ENV"
+          printf '%s\n' "$CHANGELOG_BLOCK" > /tmp/changelog_block.md
+
+      - name: Render release notes from template
+        if: steps.setup.outputs.version_changed == 'true'
+        run: |
+          python3 - <<'PY'
+          import os, pathlib
+          tpl = pathlib.Path('.github/release-template.md').read_text()
+          notes = pathlib.Path('/tmp/changelog_block.md').read_text().rstrip() + '\n'
+          out = tpl.replace('{{CHANGELOG}}', notes.rstrip())
+          pathlib.Path('/tmp/release_notes.md').write_text(out)
+          print(out)
+          PY
 
       - name: Build module zip
         if: steps.setup.outputs.version_changed == 'true'
         run: |
-          zip -r9 "${MODULE_NAME}.zip" \
+          zip -r9 "${MODULE_NAME}-${VERSION}.zip" \
             module.prop customize.sh promote.sh demote.sh service.sh \
             CHANGELOG LICENSE README.md androidacy-config.json \
             META-INF system webroot
@@ -86,10 +94,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: "${{ env.MODULE_NAME }}.zip"
+          files: "${{ env.MODULE_NAME }}-${{ env.VERSION }}.zip"
           tag_name: "${{ env.VERSION }}"
-          name: "Release ${{ env.VERSION }}"
-          body: "${{ env.CHANGELOG }}"
+          name: "microG Installer Revived.... again - ${{ env.VERSION }}"
+          body_path: /tmp/release_notes.md
           draft: false
           prerelease: false
 
