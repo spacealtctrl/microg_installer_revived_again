@@ -4,6 +4,6 @@ version=1.0.1-0
 versionCode=101
 author=spacealtctrl
 description=Promotes microG GmsCore to system-level 'priv-app' with privileged permissions.
-updateJson=https://raw.githubusercontent.com/spacealtctrl/microg_installer_revived_again/master/update.json
+updateJson=https://raw.githubusercontent.com/spacealtctrl/microg_installer_revived_again/main/update.json
 support=https://github.com/spacealtctrl/microg_installer_revived_again/issues
 minApi=21

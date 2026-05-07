@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.REPO_SYNC_PAT }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -100,6 +101,34 @@ jobs:
           body_path: /tmp/release_notes.md
           draft: false
           prerelease: false
+
+      - name: Refresh update.json
+        if: steps.setup.outputs.version_changed == 'true'
+        run: |
+          VERSION_CODE=$(grep '^versionCode=' module.prop | cut -d= -f2)
+          ZIP_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/${MODULE_NAME}-${VERSION}.zip"
+          CHANGELOG_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/main/CHANGELOG"
+          cat > update.json <<EOF
+          {
+            "version": "${VERSION}",
+            "versionCode": ${VERSION_CODE},
+            "zipUrl": "${ZIP_URL}",
+            "changelog": "${CHANGELOG_URL}"
+          }
+          EOF
+
+      - name: Commit update.json
+        if: steps.setup.outputs.version_changed == 'true'
+        run: |
+          if git diff --quiet update.json; then
+            echo "update.json unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          git commit -m "chore: bump update.json to ${VERSION}"
+          git push origin HEAD:main
 
   dispatch:
     needs: release
