@@ -52,7 +52,14 @@
     "website": "网站",
     "module_title": "microG 安装器",
     "module_by": "由 spacealtctrl 开发",
-    "version": "版本"
+    "version": "版本",
+    "thanks_title": "感谢",
+    "thanks_testers": "感谢所有 {telegram} 测试者，你们的反馈、问题报告和耐心是这个项目持续发展的动力。",
+    "thanks_translations": "翻译",
+    "thanks_zh": "BiosFeel — 简体中文",
+    "thanks_hr": "Marin — 克罗地亚语",
+    "thanks_vi": "tinbilly — 越南语",
+    "thanks_ptbr": "pedroborraz — 巴西葡萄牙语"
   },
   "status": {
     "not_installed": "未安装",

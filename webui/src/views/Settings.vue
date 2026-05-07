@@ -49,7 +49,7 @@
       <div class="mt-4 space-y-2">
         <div class="rounded-xl bg-surface-container-low p-3">
           <p class="font-medium text-on-surface">{{ $t('settings.version') }}</p>
-          <p class="text-sm text-on-surface-variant">v1.0.0-0</p>
+          <p class="text-sm text-on-surface-variant">v1.0.1-0</p>
         </div>
         <button
           class="w-full rounded-xl bg-surface-container-low p-3 text-left"
@@ -65,6 +65,30 @@
           <p class="font-medium text-on-surface">{{ $t('settings.website') }}</p>
           <p class="text-sm text-primary">spacealtctrl.net</p>
         </button>
+      </div>
+    </div>
+
+    <div class="rounded-2xl bg-surface-container p-4">
+      <p class="text-center text-lg font-bold text-on-surface">{{ $t('settings.thanks_title') }}</p>
+      <i18n-t
+        keypath="settings.thanks_testers"
+        tag="p"
+        class="mt-3 text-sm leading-relaxed text-on-surface-variant"
+      >
+        <template #telegram>
+          <a
+            class="text-primary cursor-pointer underline"
+            @click="openWebsite('https://t.me/+jnIrvi36IKE1NWU0')"
+          >Telegram</a>
+        </template>
+      </i18n-t>
+
+      <p class="mt-4 font-medium text-on-surface">{{ $t('settings.thanks_translations') }}</p>
+      <div class="mt-2 space-y-1 rounded-xl bg-surface-container-low p-3">
+        <p class="text-sm text-on-surface-variant">{{ $t('settings.thanks_zh') }}</p>
+        <p class="text-sm text-on-surface-variant">{{ $t('settings.thanks_hr') }}</p>
+        <p class="text-sm text-on-surface-variant">{{ $t('settings.thanks_vi') }}</p>
+        <p class="text-sm text-on-surface-variant">{{ $t('settings.thanks_ptbr') }}</p>
       </div>
     </div>
   </div>

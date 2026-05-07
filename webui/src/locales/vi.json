@@ -52,7 +52,14 @@
     "website": "Trang web",
     "module_title": "microG Installer Revived.... again",
     "module_by": "được phát triển bởi spacealtctrl",
-    "version": "Phiên bản"
+    "version": "Phiên bản",
+    "thanks_title": "Cảm Ơn",
+    "thanks_testers": "Gửi đến tất cả người thử nghiệm trên {telegram}, phản hồi, báo cáo lỗi và sự kiên nhẫn của các bạn là điều giữ cho dự án này tiếp tục phát triển.",
+    "thanks_translations": "Bản dịch",
+    "thanks_zh": "BiosFeel — Tiếng Trung Giản thể",
+    "thanks_hr": "Marin — Tiếng Croatia",
+    "thanks_vi": "tinbilly — Tiếng Việt",
+    "thanks_ptbr": "pedroborraz — Tiếng Bồ Đào Nha (Brazil)"
   },
   "status": {
     "not_installed": "Chưa được cài đặt",

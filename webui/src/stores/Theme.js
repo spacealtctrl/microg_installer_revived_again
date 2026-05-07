@@ -17,7 +17,11 @@ export const useThemeStore = defineStore('theme', () => {
   const debugLogging = ref(false)
 
   const LANGUAGES = [
-    { code: 'en', label: 'English' }
+    { code: 'en', label: 'English' },
+    { code: 'hr', label: 'Hrvatski' },
+    { code: 'ptbr', label: 'Português (Brasil)' },
+    { code: 'vi', label: 'Tiếng Việt' },
+    { code: 'zh', label: '简体中文' }
   ]
 
   let saveTimeout = null

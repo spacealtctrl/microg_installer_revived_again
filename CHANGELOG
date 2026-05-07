@@ -1,4 +1,5 @@
-v1.0.0-0
-- Initial full release
-- Promotes microG GmsCore and Companion/Play Store to system priv-app
-- WebUI for managing promote/demote and downloading updates
+v1.0.1-0
+- Add Simplified Chinese (zh) translation — thanks @BiosFeel
+- Add Croatian (hr) translation — thanks @Marin
+- Add Vietnamese (vi) translation — thanks @tinbilly
+- Add Brazilian Portuguese (ptbr) translation — thanks @pedroborraz

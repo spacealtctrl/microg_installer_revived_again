@@ -1,7 +1,7 @@
 id=microg_installer_revived_again
 name=microG Installer Revived.... again
-version=1.0.0-0
-versionCode=100
+version=1.0.1-0
+versionCode=101
 author=spacealtctrl
 description=Promotes microG GmsCore to system-level 'priv-app' with privileged permissions.
 updateJson=https://raw.githubusercontent.com/spacealtctrl/microg_installer_revived_again/master/update.json

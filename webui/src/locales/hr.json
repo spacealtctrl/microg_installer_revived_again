@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "home": "Početna stranica",
+    "installer": "Instalater",
+    "logs": "Logovi",
+    "settings": "Informacije"
+  },
+  "home": {
+    "title": "microG Installer Revived.... again",
+    "checking": "Provjeravanje...",
+    "detecting": "Detektiranje statusa modula",
+    "active": "Modul je aktivan",
+    "tap_disable": "Dodirnite za deaktiviranje overlay-a",
+    "disabled": "Modul je deaktiviran",
+    "tap_enable": "Dodirnite za aktiviranje overlay-a",
+    "not_active": "Modul nije aktivan",
+    "needs_promote": "Aplikacije trebaju biti promovirane",
+    "settings_btn": "Postavke modula",
+    "microg_settings_btn": "Otvorite microG Postavke",
+    "settings_title": "Postavke modula",
+    "theme": "Tema",
+    "language": "Jezik",
+    "padding": "Donji Razmak",
+    "scale": "Skala Stranice",
+    "debug_logging": "Logiranje za otklanjane pogrešaka",
+    "close": "Zatvori",
+    "theme_space": "Svemir",
+    "theme_light": "Svijetla",
+    "theme_dark": "Tamna"
+  },
+  "installer": {
+    "title": "microG Instalater",
+    "retry": "Pokušajte ponovno",
+    "no_releases": "Izdanja nisu pronađena.",
+    "more": "više...",
+    "metamodules": "metamoduli"
+  },
+  "logs": {
+    "title": "Logovi",
+    "refresh": "Osvježi",
+    "copy": "Kopiraj",
+    "copied": "Kopirano!",
+    "clear": "Očisti",
+    "loading": "Učitavanje...",
+    "empty": "Još nema logova. Logovi se zapisuju tijekom korištenja modula.",
+    "error_read": "Čitanje log dokumenta nije uspjelo."
+  },
+  "settings": {
+    "microg_by": "by microG Project",
+    "microg_desc": "FLOSS framework koji dopušta aplikacijama dizajnirane za Google Play Usluge<br />da se pokreću na sustavu gdje Play Usluge nisu dostupne.",
+    "source_code": "Izvorni Kod",
+    "website": "Web-stranica",
+    "module_title": "microG Installer Revived.... again",
+    "module_by": "by spacealtctrl",
+    "version": "Verzija",
+    "thanks_title": "Hvala",
+    "thanks_testers": "Svim {telegram} testerima, vaše povratne informacije, prijave grešaka i strpljenje su ono što ovaj projekt drži na životu.",
+    "thanks_translations": "Prijevodi",
+    "thanks_zh": "BiosFeel — pojednostavljeni kineski",
+    "thanks_hr": "Marin — hrvatski",
+    "thanks_vi": "tinbilly — vijetnamski",
+    "thanks_ptbr": "pedroborraz — brazilski portugalski"
+  },
+  "status": {
+    "not_installed": "Nije instalirano",
+    "play_services_detected": "Detektirane Google Play Usluge (ne microG)",
+    "microg_gmscore": "microG GmsCore",
+    "microg_companion_play": "microG Companion/Trgovina Play",
+    "play_store": "Trgovina Play",
+    "microg_companion": "microG Companion",
+    "metamodule": "Metamodul",
+    "promoting": "Promoviranje...",
+    "promoted": "Promovirano",
+    "promote": "Promoviraj",
+    "promote_subtext_demote": "GmsCore i {app} promovirane u '/priv-app/' - <b>Držite za degradiranje</b>",
+    "promote_subtext_promote": "Ništa nije promovirano - <b>Držite za promoviranje</b>",
+    "companion": "Companion"
+  },
+  "release": {
+    "latest": "Najnovije",
+    "current": "Trenutno",
+    "no_apks": "Nema dostupnih APK datoteka za Vašu vrstu uređaja."
+  },
+  "apk": {
+    "downloading": "Preuzimanje",
+    "installing": "Instaliranje",
+    "finishing": "Završavanje",
+    "uninstalling": "Deinstaliranje",
+    "uninstalled": "Deinstalirano",
+    "installed": "Instalirano",
+    "failed": "Nije uspjelo",
+    "install": "Instaliraj",
+    "confirm_uninstall_title": "Jeste li sigurni da želite deinstalirati?",
+    "warning_active_title": "Modul je aktivan",
+    "warning_active_text": "Deinstaliranje dok je modul aktivan može uzrokovati bootloop. Deaktivirajte modul i ponovno pokrenite uređaj prije deinstalacije.",
+    "cancel": "Otkaži",
+    "uninstall": "Deinstaliraj"
+  },
+  "toast": {
+    "press_back_exit": "Ponovno pritisnite natrag za izlaz",
+    "installing": "Instaliranje {name}...",
+    "uninstalling": "Deinstaliranje {name}...",
+    "module_disabled_reboot": "Modul je deaktiviran i aplikacije degradirane — ponovno pokrenite uređaj za primjenu",
+    "module_enabled_reboot": "Modul je aktiviran i aplikacije promovirane — ponovno pokrenite uređaj za primjenu",
+    "failed_toggle_module": "Neuspješno prebacivanje modula",
+    "installed_success": "{name} je uspješno instalirano",
+    "install_failed": "Instalacija {name} nije uspjela",
+    "uninstalled_success": "{name} je deinstaliran",
+    "uninstall_failed": "Deinstalacija {name} nije uspjela",
+    "demoted_reboot": "Degradirano — ponovno pokrenite uređaj za primjenu",
+    "promoted_reboot": "Promovirano — ponovno pokrenite uređaj za primjenu",
+    "failed": "Nije uspjelo"
+  },
+  "error": {
+    "fetch_releases": "Neuspješno dohvaćanje izdanja",
+    "detection_failed": "Neuspješno otkrivanje"
+  }
+}

@@ -52,7 +52,14 @@
     "website": "Site",
     "module_title": "microG Installer Revived.... de novo",
     "module_by": "por spacealtctrl",
-    "version": "Versão"
+    "version": "Versão",
+    "thanks_title": "Obrigado",
+    "thanks_testers": "A todos os testadores do {telegram}, seus feedbacks, relatos de bugs e paciência são o que mantém este projeto vivo.",
+    "thanks_translations": "Traduções",
+    "thanks_zh": "BiosFeel — Chinês Simplificado",
+    "thanks_hr": "Marin — Croata",
+    "thanks_vi": "tinbilly — Vietnamita",
+    "thanks_ptbr": "pedroborraz — Português (Brasil)"
   },
   "status": {
     "not_installed": "Não instalado",

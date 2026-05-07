@@ -1,0 +1,107 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_release:
+        description: 'Force release even if version tag already exists'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  MODULE_NAME: 'microg_installer_revived_again'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version_changed: ${{ steps.setup.outputs.version_changed }}
+      VERSION: ${{ steps.setup.outputs.VERSION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: webui/package-lock.json
+
+      - name: Build webroot
+        run: |
+          cd webui
+          npm ci
+          npm run build
+
+      - name: Read version + check release
+        id: setup
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(grep '^version=' module.prop | cut -d= -f2)
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+          if gh release view "$VERSION" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            if [ "${{ inputs.force_release }}" = "true" ]; then
+              echo "version_changed=true" >> "$GITHUB_OUTPUT"
+              echo "Forcing re-release of existing tag $VERSION"
+            else
+              echo "version_changed=false" >> "$GITHUB_OUTPUT"
+              echo "Release $VERSION already exists; skipping"
+            fi
+          else
+            echo "version_changed=true" >> "$GITHUB_OUTPUT"
+            echo "New version: $VERSION"
+          fi
+
+          CHANGELOG_BLOCK=$(awk -v v="$VERSION" '
+            $0=="v"v {found=1; print; next}
+            found && /^v[0-9]/ {exit}
+            found {print}
+          ' CHANGELOG)
+          {
+            echo "CHANGELOG<<EOF"
+            echo "$CHANGELOG_BLOCK"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+      - name: Build module zip
+        if: steps.setup.outputs.version_changed == 'true'
+        run: |
+          zip -r9 "${MODULE_NAME}.zip" \
+            module.prop customize.sh promote.sh demote.sh service.sh \
+            CHANGELOG LICENSE README.md androidacy-config.json \
+            META-INF system webroot
+
+      - name: Create GitHub Release
+        if: steps.setup.outputs.version_changed == 'true'
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: "${{ env.MODULE_NAME }}.zip"
+          tag_name: "${{ env.VERSION }}"
+          name: "Release ${{ env.VERSION }}"
+          body: "${{ env.CHANGELOG }}"
+          draft: false
+          prerelease: false
+
+  dispatch:
+    needs: release
+    if: needs.release.outputs.version_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger mirror sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_SYNC_PAT }}
+          repository: KernelSU-Modules-Repo/microg_installer_revived_again
+          event-type: sync-release
+          client-payload: '{"version": "${{ needs.release.outputs.VERSION }}"}'
