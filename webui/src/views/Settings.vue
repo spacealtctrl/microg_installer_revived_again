@@ -49,7 +49,7 @@
       <div class="mt-4 space-y-2">
         <div class="rounded-xl bg-surface-container-low p-3">
           <p class="font-medium text-on-surface">{{ $t('settings.version') }}</p>
-          <p class="text-sm text-on-surface-variant">v1.0.1-0</p>
+          <p class="text-sm text-on-surface-variant">{{ moduleVersion }}</p>
         </div>
         <button
           class="w-full rounded-xl bg-surface-container-low p-3 text-left"
@@ -97,6 +97,8 @@
 <script setup>
 
 import { openWebsite } from '@/helpers/KernelSU.js'
+
+const moduleVersion = __MODULE_VERSION__
 </script>
 
 <style scoped>
