@@ -83,6 +83,7 @@
   },
   "apk": {
     "downloading": "Downloading",
+    "verifying": "Verifying",
     "installing": "Installing",
     "finishing": "Finishing",
     "uninstalling": "Uninstalling",
@@ -105,6 +106,7 @@
     "failed_toggle_module": "Failed to toggle module",
     "installed_success": "{name} installed successfully",
     "install_failed": "Failed to install {name}",
+    "verify_failed": "Verification failed for {name}",
     "uninstalled_success": "{name} uninstalled",
     "uninstall_failed": "Failed to uninstall {name}",
     "demoted_reboot": "Demoted — reboot to apply",

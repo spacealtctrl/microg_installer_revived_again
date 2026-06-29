@@ -108,10 +108,10 @@ else
     VD_PATH="$(realpath $(echo "$DUMP_VD" | grep path: | head -n1 | cut -d: -f2))"
     debug_log "✓ Vending: version=$VD_VERN path=$VD_PATH"
     if [ -n "$VD_PATH" ] && [ -f "$VD_PATH" ]; then
-        if case "$VD_VERN" in v0*|0*) true;; *) false;; esac; then
+        if (echo "$DUMP_VD" | grep -q "android.permission.FAKE_PACKAGE_SIGNATURE"); then
             ui_print "  ✓ microG Companion v$VD_VERN"
             VD_IS_COMPANION=true
-            debug_log "✓ Vending: microG Companion v$VD_VERN"
+            debug_log "✓ Vending: microG Companion v$VD_VERN (FAKE_PACKAGE_SIGNATURE)"
         else
             ui_print "  ✓ Play Store v$VD_VERN"
             debug_log "✓ Vending: Play Store v$VD_VERN"

@@ -26,3 +26,10 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: webui
+
+      - name: Test
+        run: npm test
+        working-directory: webui
+
+      - name: ShellCheck
+        run: shellcheck -S warning *.sh || true

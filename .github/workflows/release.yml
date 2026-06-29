@@ -147,6 +147,7 @@ jobs:
         run: |
           zip -r9 "${MODULE_NAME}-${VERSION}.zip" \
             module.prop customize.sh promote.sh demote.sh service.sh \
+            action.sh uninstall.sh \
             CHANGELOG LICENSE README.md androidacy-config.json \
             META-INF system webroot
 

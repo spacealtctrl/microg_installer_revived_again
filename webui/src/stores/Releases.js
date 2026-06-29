@@ -9,7 +9,9 @@ import {
   filterAssetsForDevice,
   getPackageName,
   downloadApk,
+  verifyApkDigest,
   installApk,
+  removeFile,
   uninstallPackage
 } from '@/helpers/MicroG.js'
 import { toast } from '@/helpers/KernelSU.js'
@@ -121,25 +123,33 @@ export const useReleasesStore = defineStore('releases', () => {
 
   async function downloadAndInstall(asset) {
     const name = asset.name
+    const safeName = name.replace(/[^A-Za-z0-9._-]/g, '_')
+    const destPath = `/data/local/tmp/${safeName}`
     await debugLog(TAG, `downloadAndInstall: START ${name}`)
-    downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'downloading' } }
+    downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'downloading', percent: 0 } }
     try {
-      const destPath = `/data/local/tmp/${name}`
-      await debugLog(TAG, `✓ downloadAndInstall: downloading ${asset.browser_download_url}`)
-      await downloadApk(asset.browser_download_url, destPath)
+      await downloadApk(asset.browser_download_url, destPath, asset.size || 0, (percent) => {
+        downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'downloading', percent } }
+      })
+
+      downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'verifying' } }
+      const check = await verifyApkDigest(destPath, asset.digest)
+      if (!check.ok) {
+        throw new Error(t('toast.verify_failed', { name }))
+      }
 
       downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'installing' } }
-      await debugLog(TAG, `✓ downloadAndInstall: installing ${destPath}`)
       await installApk(destPath)
 
       downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'cleaning' } }
-      await debugLog(TAG, `✓ downloadAndInstall: refreshing status`)
+      await removeFile(destPath)
       await status.fetchStatus()
 
       downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'done' } }
       await debugLog(TAG, `✓ downloadAndInstall: DONE ${name}`)
       toast(t('toast.installed_success', { name }))
     } catch (err) {
+      await removeFile(destPath)
       downloadProgress.value = { ...downloadProgress.value, [name]: { status: 'error', error: err.message } }
       await debugLog(TAG, `✗ downloadAndInstall: ERROR ${name} — ${err.message}`)
       toast(t('toast.install_failed', { name }))

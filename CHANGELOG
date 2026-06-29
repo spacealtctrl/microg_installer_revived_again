@@ -1,7 +1,9 @@
-v1.0.2
-- Maintenance release: dependency updates
-
-v1.0.1-0
-- Add Simplified Chinese (zh) translation — thanks @BiosFeel
-- Add Vietnamese (vi) translation — thanks @tinbilly
-- Add Brazilian Portuguese (ptbr) translation — thanks @pedroborraz
+v1.1.0
+- Verify downloaded APKs against GitHub SHA-256 before installing
+- Live download progress with curl/wget fallback
+- Clean up temporary APKs after install
+- Signature-based microG Companion detection during install
+- Keep the previous boot's debug log instead of wiping it
+- Module action button and uninstall cleanup
+- Graceful handling of GitHub API rate limits
+- Hardened WebUI shell command handling

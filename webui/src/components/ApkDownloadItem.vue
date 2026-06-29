@@ -7,7 +7,10 @@
 
     <div class="flex shrink-0 items-center gap-2">
       <span v-if="assetStatus?.status === 'downloading'" class="status-pill downloading">
-        {{ $t('apk.downloading') }}
+        {{ $t('apk.downloading') }}{{ assetStatus.percent != null ? ` ${assetStatus.percent}%` : '' }}
+      </span>
+      <span v-else-if="assetStatus?.status === 'verifying'" class="status-pill installing">
+        {{ $t('apk.verifying') }}
       </span>
       <span v-else-if="assetStatus?.status === 'installing'" class="status-pill installing">
         {{ $t('apk.installing') }}

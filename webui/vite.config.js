@@ -26,5 +26,9 @@ export default defineConfig({
   build: {
     outDir: '../webroot',
     emptyOutDir: true
+  },
+  test: {
+    environment: 'node',
+    include: ['src/**/*.test.js']
   }
 })

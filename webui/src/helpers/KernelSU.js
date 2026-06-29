@@ -9,13 +9,16 @@ export function setLoggingEnabled(val) {
   isLoggingEnabled = val
 }
 
+export function shq(value) {
+  return `'${String(value).replace(/'/g, "'\\''")}'`
+}
+
 export async function debugLog(tag, msg) {
   if (!isLoggingEnabled) return
   try {
     const ts = new Date().toISOString().replace('T', ' ').replace(/\.\d+Z$/, '')
     const line = `[${ts}] [${tag}] ${msg}`
-    const escaped = line.replace(/\\/g, '\\\\').replace(/'/g, "'\\''")
-    await ksuExec(`printf '%s\\n' '${escaped}' >> '${LOG_PATH}'`)
+    await ksuExec(`printf '%s\\n' ${shq(line)} >> ${shq(LOG_PATH)}`)
   } catch {
   }
 }
@@ -50,38 +53,33 @@ export async function execSafe(cmd) {
 
 export async function readFile(path) {
   await debugLog('KernelSU.js', `readFile: ${path}`)
-  return exec(`cat '${path}'`)
+  return exec(`cat ${shq(path)}`)
 }
 
 export async function readFileSafe(path) {
   await debugLog('KernelSU.js', `readFileSafe: ${path}`)
-  const { errno, stdout } = await ksuExec(`cat '${path}' 2>/dev/null`)
+  const { errno, stdout } = await ksuExec(`cat ${shq(path)} 2>/dev/null`)
   if (errno !== 0) {
     await debugLog('KernelSU.js', `✓ readFileSafe: ${path} not found, returned empty`)
     return ''
   }
-  const trimmed = stdout.trim()
-  await debugLog('KernelSU.js', `✓ readFileSafe OK: ${trimmed.slice(0, 200)}`)
-  return trimmed
+  return stdout.trim()
 }
 
 export async function writeFile(path, content) {
   await debugLog('KernelSU.js', `writeFile: ${path} (${content.length} chars)`)
-  const escaped = content.replace(/'/g, "'\\''")
-  return exec(`echo '${escaped}' > '${path}'`)
+  return exec(`printf '%s' ${shq(content)} > ${shq(path)}`)
 }
 
 export async function fileExists(path) {
   await debugLog('KernelSU.js', `fileExists: ${path}`)
-  const { errno } = await ksuExec(`[ -f '${path}' ]`)
-  const exists = errno === 0
-  await debugLog('KernelSU.js', `✓ fileExists: ${path} → ${exists}`)
-  return exists
+  const { errno } = await ksuExec(`[ -f ${shq(path)} ]`)
+  return errno === 0
 }
 
 export async function readLog() {
   try {
-    const { stdout } = await ksuExec(`cat '${LOG_PATH}' 2>/dev/null || echo ''`)
+    const { stdout } = await ksuExec(`cat ${shq(LOG_PATH)} 2>/dev/null || echo ''`)
     return stdout
   } catch {
     return ''
@@ -91,14 +89,14 @@ export async function readLog() {
 export async function clearLog() {
   try {
     const ts = new Date().toISOString().replace('T', ' ').replace(/\.\d+Z$/, '')
-    await ksuExec(`echo '[${ts}] [KernelSU.js] === LOG CLEARED ===' > '${LOG_PATH}'`)
+    await ksuExec(`printf '%s\\n' ${shq(`[${ts}] [KernelSU.js] === LOG CLEARED ===`)} > ${shq(LOG_PATH)}`)
   } catch {
   }
 }
 
 export function openWebsite(url) {
   if (isKSUWebUI()) {
-    exec(`am start -a android.intent.action.VIEW -d '${url}'`)
+    exec(`am start -a android.intent.action.VIEW -d ${shq(url)}`)
   } else {
     window.open(url, '_blank')
   }

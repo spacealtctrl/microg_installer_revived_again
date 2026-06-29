@@ -1,13 +1,20 @@
 
-import { exec, execSafe, debugLog } from './KernelSU.js'
+import { exec, execSafe, debugLog, shq } from './KernelSU.js'
 
 const TAG = 'MicroG.js'
 
 const GITHUB_API = 'https://api.github.com/repos/microg/GmsCore/releases'
+
 export async function fetchReleases() {
   await debugLog(TAG, 'fetchReleases: calling GitHub API')
   const response = await fetch(`${GITHUB_API}?per_page=20`)
   if (!response.ok) {
+    if (response.status === 403 && response.headers.get('x-ratelimit-remaining') === '0') {
+      const reset = parseInt(response.headers.get('x-ratelimit-reset'))
+      const mins = reset ? Math.max(1, Math.ceil((reset * 1000 - Date.now()) / 60000)) : 0
+      await debugLog(TAG, '✗ fetchReleases: GitHub rate limit reached')
+      throw new Error(mins ? `GitHub rate limit reached. Try again in ~${mins} min.` : 'GitHub rate limit reached. Try again later.')
+    }
     await debugLog(TAG, `✗ fetchReleases: GitHub API error ${response.status}`)
     throw new Error(`GitHub API error: ${response.status}`)
   }
@@ -104,23 +111,73 @@ export async function getMetamodule() {
   return name || ''
 }
 
-export async function downloadApk(url, destPath) {
+export async function pickDownloader() {
+  return execSafe(
+    'command -v curl >/dev/null 2>&1 && echo curl || (command -v wget >/dev/null 2>&1 && echo wget || (command -v busybox >/dev/null 2>&1 && echo busybox || echo none))'
+  )
+}
+
+export async function downloadApk(url, destPath, totalSize, onProgress) {
   await debugLog(TAG, `downloadApk: ${url} → ${destPath}`)
-  await exec(`curl -fSL -o '${destPath}' '${url}'`)
-  await debugLog(TAG, `✓ downloadApk: download complete`)
+  const tool = await pickDownloader()
+  if (tool === 'none') {
+    throw new Error('No downloader available (curl or wget required)')
+  }
+  let cmd
+  if (tool === 'curl') cmd = `curl -fsSL -o ${shq(destPath)} ${shq(url)}`
+  else if (tool === 'wget') cmd = `wget -q -O ${shq(destPath)} ${shq(url)}`
+  else cmd = `busybox wget -q -O ${shq(destPath)} ${shq(url)}`
+
+  let poll
+  if (totalSize > 0 && typeof onProgress === 'function') {
+    poll = setInterval(async () => {
+      const got = parseInt(await execSafe(`stat -c %s ${shq(destPath)} 2>/dev/null || echo 0`)) || 0
+      onProgress(Math.min(99, Math.round((got / totalSize) * 100)))
+    }, 500)
+  }
+  try {
+    await exec(`rm -f ${shq(destPath)}; ${cmd}`)
+  } finally {
+    if (poll) clearInterval(poll)
+  }
+  const size = parseInt(await execSafe(`stat -c %s ${shq(destPath)} 2>/dev/null || echo 0`)) || 0
+  if (size === 0) {
+    throw new Error('Download failed')
+  }
+  if (typeof onProgress === 'function') onProgress(100)
+  await debugLog(TAG, `✓ downloadApk: complete (${size} bytes via ${tool})`)
   return destPath
+}
+
+export async function verifyApkDigest(path, digest) {
+  if (!digest || !digest.startsWith('sha256:')) {
+    await debugLog(TAG, 'verifyApkDigest: no sha256 digest provided, skipping')
+    return { ok: true, skipped: true }
+  }
+  const expected = digest.slice(7).toLowerCase()
+  const actual = (await execSafe(`sha256sum ${shq(path)} 2>/dev/null | awk '{print $1}'`)).toLowerCase()
+  if (!actual) {
+    return { ok: false, reason: 'sha256sum unavailable' }
+  }
+  const ok = actual === expected
+  await debugLog(TAG, `✓ verifyApkDigest: ${ok ? 'match' : 'MISMATCH'}`)
+  return { ok, expected, actual }
 }
 
 export async function installApk(apkPath) {
   await debugLog(TAG, `installApk: pm install -r -d ${apkPath}`)
-  const result = await exec(`pm install -r -d '${apkPath}'`)
+  const result = await exec(`pm install -r -d ${shq(apkPath)}`)
   await debugLog(TAG, `✓ installApk: result=${result}`)
   return result
 }
 
+export async function removeFile(path) {
+  await execSafe(`rm -f ${shq(path)}`)
+}
+
 export async function uninstallPackage(packageName) {
   await debugLog(TAG, `uninstallPackage: ${packageName}`)
-  const result = await exec(`pm uninstall '${packageName}'`)
+  const result = await exec(`pm uninstall ${shq(packageName)}`)
   await debugLog(TAG, `✓ uninstallPackage: result=${result}`)
   return result
 }
