@@ -1,3 +1,8 @@
+v1.1.1
+- Add test vitest
+- Add vitest ^4.1.9
+- Update version: 1.0.2 -> 1.1.0
+
 v1.1.0
 - Verify downloaded APKs against GitHub SHA-256 before installing
 - Live download progress with curl/wget fallback
