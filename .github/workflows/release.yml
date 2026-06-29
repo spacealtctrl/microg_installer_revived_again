@@ -56,19 +56,16 @@ jobs:
         if: github.event_name == 'push'
         run: |
           VER=$(grep '^version=' module.prop | cut -d= -f2)
-          ENTRIES=$(git diff HEAD~1 HEAD -- webui/package.json \
-            | grep -E '^[+-][[:space:]]*"' \
-            | sed -E 's/^([+-])[[:space:]]*"([^"]+)":[[:space:]]*"([^"]+)",?/\1 \2 \3/' \
-            | awk '
-                $1=="-" { old[$2]=$3 }
-                $1=="+" { neu[$2]=$3 }
-                END {
-                  for (p in neu) {
-                    if ((p in old) && old[p]!=neu[p]) print "- Update " p ": " old[p] " -> " neu[p]
-                    else if (!(p in old))            print "- Add " p " " neu[p]
-                  }
-                  for (p in old) if (!(p in neu))    print "- Remove " p
-                }' | sort)
+          git show HEAD~1:webui/package.json > /tmp/pkg_old.json 2>/dev/null || echo '{}' > /tmp/pkg_old.json
+          git show HEAD:webui/package.json > /tmp/pkg_new.json 2>/dev/null || echo '{}' > /tmp/pkg_new.json
+          ENTRIES=$(jq -rn --slurpfile o /tmp/pkg_old.json --slurpfile n /tmp/pkg_new.json '
+            ($o[0] | (.dependencies // {}) + (.devDependencies // {})) as $old |
+            ($n[0] | (.dependencies // {}) + (.devDependencies // {})) as $new |
+            (($old|keys) + ($new|keys) | unique)[] as $k |
+            if ($old[$k] and $new[$k] and $old[$k] != $new[$k]) then "- Update \($k): \($old[$k]) -> \($new[$k])"
+            elif ($new[$k] and ($old[$k] == null)) then "- Add \($k) \($new[$k])"
+            elif ($old[$k] and ($new[$k] == null)) then "- Remove \($k)"
+            else empty end' | sort)
           if [ -z "$ENTRIES" ]; then
             ENTRIES="- Maintenance release: dependency updates"
           fi
