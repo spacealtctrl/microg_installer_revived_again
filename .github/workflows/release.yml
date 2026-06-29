@@ -8,6 +8,15 @@ on:
         required: false
         type: boolean
         default: false
+  push:
+    branches: [main]
+    paths:
+      - 'webui/package.json'
+      - 'webui/package-lock.json'
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 env:
   MODULE_NAME: 'microg_installer_revived_again'
@@ -26,6 +35,55 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.REPO_SYNC_PAT }}
+
+      - name: Bump version
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          CUR=$(grep '^version=' module.prop | cut -d= -f2 | sed 's/^v//; s/-.*//')
+          IFS=. read -r MAJOR MINOR PATCH <<< "$CUR"
+          if [ "$EVENT_NAME" = "push" ]; then
+            PATCH=$((PATCH + 1))
+          fi
+          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          NEW_CODE=$((MAJOR * 1000000 + MINOR * 1000 + PATCH))
+          sed -i "s/^version=.*/version=${NEW_VERSION}/" module.prop
+          sed -i "s/^versionCode=.*/versionCode=${NEW_CODE}/" module.prop
+          sed -i -E "s/(\"version\": )\"[^\"]*\"/\1\"${MAJOR}.${MINOR}.${PATCH}\"/" webui/package.json
+          echo "module.prop -> version=${NEW_VERSION} versionCode=${NEW_CODE}"
+
+      - name: Update CHANGELOG
+        if: github.event_name == 'push'
+        run: |
+          VER=$(grep '^version=' module.prop | cut -d= -f2)
+          ENTRIES=$(git diff HEAD~1 HEAD -- webui/package.json \
+            | grep -E '^[+-][[:space:]]*"' \
+            | sed -E 's/^([+-])[[:space:]]*"([^"]+)":[[:space:]]*"([^"]+)",?/\1 \2 \3/' \
+            | awk '
+                $1=="-" { old[$2]=$3 }
+                $1=="+" { neu[$2]=$3 }
+                END {
+                  for (p in neu) {
+                    if ((p in old) && old[p]!=neu[p]) print "- Update " p ": " old[p] " -> " neu[p]
+                    else if (!(p in old))            print "- Add " p " " neu[p]
+                  }
+                  for (p in old) if (!(p in neu))    print "- Remove " p
+                }' | sort)
+          if [ -z "$ENTRIES" ]; then
+            ENTRIES="- Maintenance release: dependency updates"
+          fi
+          COUNT=$(printf '%s\n' "$ENTRIES" | grep -c '^- ')
+          if [ "$COUNT" -gt 8 ]; then
+            NAMES=$(printf '%s\n' "$ENTRIES" | sed -E 's/^- (Update|Add|Remove) ([^ :]+).*/\2/' | head -5 | paste -sd ',' - | sed 's/,/, /g')
+            ENTRIES="- Update ${COUNT} dependencies (${NAMES}, ...)"
+          fi
+          {
+            echo "$VER"
+            echo "$ENTRIES"
+            echo
+            cat CHANGELOG
+          } > CHANGELOG.new
+          mv CHANGELOG.new CHANGELOG
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -63,10 +121,13 @@ jobs:
           fi
 
           CHANGELOG_BLOCK=$(awk -v v="$VERSION" '
-            $0=="v"v {found=1; next}
+            $0==v {found=1; next}
             found && /^v[0-9]/ {exit}
             found {print}
           ' CHANGELOG)
+          if [ -z "$(printf '%s' "$CHANGELOG_BLOCK" | tr -d '[:space:]')" ]; then
+            CHANGELOG_BLOCK="- Maintenance release: dependency updates"
+          fi
           printf '%s\n' "$CHANGELOG_BLOCK" > /tmp/changelog_block.md
 
       - name: Render release notes from template
@@ -117,18 +178,25 @@ jobs:
           }
           EOF
 
-      - name: Commit update.json
+      - name: Commit version bump + update.json
         if: steps.setup.outputs.version_changed == 'true'
         run: |
-          if git diff --quiet update.json; then
-            echo "update.json unchanged"
+          if git diff --quiet module.prop update.json CHANGELOG webui/package.json; then
+            echo "Nothing to commit"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add update.json
-          git commit -m "chore: bump update.json to ${VERSION}"
-          git push origin HEAD:main
+          git add module.prop update.json CHANGELOG webui/package.json
+          git commit -m "chore: release ${VERSION} [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git push origin HEAD:main && exit 0
+            echo "push rejected (attempt $attempt); rebasing onto latest main"
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "Failed to push after retries"
+          exit 1
 
   dispatch:
     needs: release

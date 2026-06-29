@@ -32,7 +32,7 @@ mmm_exec showLoading
 ui_print " "
 ui_print "==================================="
 ui_print "  microG Installer Revived.... again"
-ui_print "  v1.0.1-0"
+ui_print "  $(grep '^version=' "$MODPATH/module.prop" | cut -d= -f2)"
 ui_print "==================================="
 ui_print " "
 
