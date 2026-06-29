@@ -71,6 +71,11 @@ jobs:
           if [ -z "$ENTRIES" ]; then
             ENTRIES="- Maintenance release: dependency updates"
           fi
+          COUNT=$(printf '%s\n' "$ENTRIES" | grep -c '^- ')
+          if [ "$COUNT" -gt 8 ]; then
+            NAMES=$(printf '%s\n' "$ENTRIES" | sed -E 's/^- (Update|Add|Remove) ([^ :]+).*/\2/' | head -5 | paste -sd ',' - | sed 's/,/, /g')
+            ENTRIES="- Update ${COUNT} dependencies (${NAMES}, ...)"
+          fi
           {
             echo "$VER"
             echo "$ENTRIES"
