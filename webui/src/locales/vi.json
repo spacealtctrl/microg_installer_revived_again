@@ -11,7 +11,7 @@
     "detecting": "Đang nhận diện trạng thái module",
     "active": "Module đang hoạt động",
     "tap_disable": "Chạm để tắt overlay",
-    "disabled": "Module đã bị tắt",
+    "disabled": "Module đã được tắt",
     "tap_enable": "Chạm để bật overlay",
     "not_active": "Module không hoạt động",
     "needs_promote": "Ứng dụng cần được cấp đặc quyền hệ thống",
@@ -24,7 +24,7 @@
     "scale": "Tỷ lệ trang",
     "debug_logging": "Ghi nhật ký gỡ lỗi",
     "close": "Đóng",
-    "theme_space": "Vũ trụ",
+    "theme_space": "Không gian",
     "theme_light": "Sáng",
     "theme_dark": "Tối"
   },
@@ -42,7 +42,7 @@
     "copied": "Đã sao chép!",
     "clear": "Xóa sạch",
     "loading": "Đang tải...",
-    "empty": "Chưa có nhật ký. Nhật ký được ghi khi module vận hành.",
+    "empty": "Chưa có nhật ký. Nhật ký được ghi khi module hoạt động.",
     "error_read": "Không thể đọc tệp nhật ký."
   },
   "settings": {
@@ -53,8 +53,8 @@
     "module_title": "microG Installer Revived.... again",
     "module_by": "được phát triển bởi spacealtctrl",
     "version": "Phiên bản",
-    "thanks_title": "Cảm Ơn",
-    "thanks_testers": "Gửi đến tất cả người thử nghiệm trên {telegram}, phản hồi, báo cáo lỗi và sự kiên nhẫn của các bạn là điều giữ cho dự án này tiếp tục phát triển.",
+    "thanks_title": "Lời cảm ơn",
+    "thanks_testers": "Gửi đến tất cả những người thử nghiệm trên {telegram}, phản hồi, báo cáo lỗi và sự kiên nhẫn của các bạn đã giúp cho dự án này tiếp tục phát triển.",
     "thanks_translations": "Bản dịch",
     "thanks_zh": "BiosFeel — Tiếng Trung Giản thể",
     "thanks_hr": "Marin — Tiếng Croatia",
