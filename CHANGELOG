@@ -1,3 +1,6 @@
+v1.1.2
+- Maintenance release: dependency updates
+
 v1.1.1
 
 - Verify downloaded APKs against GitHub SHA-256 before installing
