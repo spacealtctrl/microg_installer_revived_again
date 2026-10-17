@@ -22,6 +22,6 @@
     "tailwindcss": "^4.0.0",
     "vite": "^6.1.0",
     "vite-plugin-minify": "^2.0.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   }
 }
