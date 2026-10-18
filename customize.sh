@@ -62,6 +62,20 @@ else
 fi
 debug_log "✓ GMS_DEST=$GMS_DEST GMS_APK=$GMS_APK VD_DEST=$VD_DEST"
 
+# Only mask Volla providers that actually exist in the current system.
+# Unneeded .replace markers can make Kasumi reject the whole module.
+prune_absent_volla_replacement() {
+  if [ ! -e "$1" ] && [ ! -L "$1" ]; then
+    rm -f "$2/.replace"
+    rmdir "$2" 2>/dev/null || true
+    debug_log "✓ skipped absent Volla replacement: $1"
+  fi
+}
+
+prune_absent_volla_replacement /system/app/VollaNlpRRO "$MODPATH/system/app/VollaNlpRRO"
+prune_absent_volla_replacement /system/product/app/VollaNlp "$MODPATH/system/product/app/VollaNlp"
+prune_absent_volla_replacement /system/product/app/VollaGSMNlp "$MODPATH/system/product/app/VollaGSMNlp"
+
 
 GMS_PATH=""
 GMS_VERN=""
