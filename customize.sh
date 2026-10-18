@@ -49,6 +49,19 @@ if [ -f "/data/adb/modules/microg_installer_revived_again/debug_logging_enabled"
     debug_log "✓ preserved debug_logging_enabled"
 fi
 
+if [ -f "/data/adb/modules/microg_installer_revived_again/keep_overlay" ]; then
+    touch "$MODPATH/keep_overlay"
+    debug_log "✓ preserved keep_overlay"
+fi
+
+if { [ "$KSU" = "true" ] || [ "$APATCH" = "true" ]; } && [ ! -f "$MODPATH/keep_overlay" ]; then
+    rm -rf "$MODPATH/system/product/overlay"
+    ui_print "- KernelSU/APatch: skipping microGOverlay (breaks zygote with umount)"
+    debug_log "✓ removed system/product/overlay (KSU=$KSU APATCH=$APATCH, no keep_overlay)"
+else
+    debug_log "✓ keeping system/product/overlay (KSU=$KSU APATCH=$APATCH)"
+fi
+
 if [ -d "/my_bigball/priv-app/GmsCore" ]; then
   GMS_DEST="$MODPATH/system/priv-app/microG"
   GMS_APK="microG.apk"
