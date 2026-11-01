@@ -1,3 +1,6 @@
+v1.1.5
+- Update vite: ^6.1.0 -> ^6.4.5
+
 v1.1.4
 - Maintenance release: dependency updates
 
