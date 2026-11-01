@@ -20,7 +20,7 @@
     "@tailwindcss/vite": "^4.0.0",
     "@vitejs/plugin-vue": "^5.2.0",
     "tailwindcss": "^4.0.0",
-    "vite": "^6.1.0",
+    "vite": "^6.4.5",
     "vite-plugin-minify": "^2.0.0",
     "vitest": "^4.1.9"
   }
