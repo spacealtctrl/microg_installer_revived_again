@@ -37,6 +37,16 @@ This module improves how microG interacts with the Android system by converting 
 4. **KernelSU Users**: Open the KernelSU app, navigate to the Modules tab, and tap the module to open the WebUI. From here you can check status, manage updates, and access logs (if enabled).
 5. **Magisk Users**: I suggest using [WebUI X](https://github.com/MMRLApp/WebUI-X-Portable) to interact with the module's interface. Otherwise, rely on `customize.sh` which will automatically promote the APKs you installed prior to flashing.
 
+#### microGOverlay on KernelSU / APatch
+
+The bundled `microGOverlay.apk` (a framework overlay that sets microG as network location / geocoder provider) is **skipped by default on KernelSU and APatch**. These unmount module files for non-root apps, and because zygote holds framework overlays open, every app process aborts on start (blank screen, no keyboard, no SIM PIN prompt).
+
+If you have disabled umount for modules and want the overlay anyway, create the flag and reinstall the module:
+
+```sh
+su -c touch /data/adb/modules/microg_installer_revived_again/keep_overlay
+```
+
 ---
 
 ### Support & Contributions
